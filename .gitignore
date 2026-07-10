@@ -1,0 +1,120 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/API/bin/Debug/net6.0
+/API/obj
+/BAL/bin/Debug/net6.0
+/BAL/obj
+/Common/bin/Debug/net6.0
+/Common/obj
+/DTO/bin/Debug/net6.0
+/DTO/obj
+/ExceptionHandling/bin/Debug/net6.0
+/ExceptionHandling/obj
+/.vs
+
+
+################################################################################
+# ASP.NET Core
+################################################################################
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Auto generated files
+*.vssscc
+
+# User-specific files
+.vscode/
+*.code-workspace
+
+# Logs
+logs/
+*.log
+
+# Visual Studio
+.vs/
+.vscode/
+
+# Rider
+.idea/
+*.sln.iml
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Backup & report files
+_UpgradeReport_Files/
+Backup*/
+UpgradeLog*.XML
+UpgradeLog*.htm
+
+# SQL Server files
+*.mdf
+*.ldf
+
+# Azure DevOps
+.vsts/
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Build results
+bin/
+obj/
+
+# NuGet
+*.nupkg
+# The packages folder can be ignored because of Package Restore
+**/packages
+# except build/, which is used as an MSBuild target.
+!**/packages/build/
+# Uncomment if necessary however generally it will be regenerated when needed
+#!**/packages/repositories.config
+
+# Include if using .NET Core
+project.lock.json
+project.fragment.lock.json
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# JetBrains Rider
+.idea/
+
+# Rider projects
+*.sln.iml
+
+# End of https://www.toptal.com/developers/gitignore/api/visualstudio,visualstudiocode,windows,jetbrains,aspnetcore
+
+/API/assets/Amenities
+/API/assets/
+/API/assets/*
