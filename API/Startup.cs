@@ -15,6 +15,7 @@ using System.Text;
 using API.Configurations;
 using BAL.DependencyResolver;
 using DTO.Models.Auth;
+using API.Services;
 
 namespace API
 {
@@ -60,6 +61,8 @@ namespace API
             services.DIBALResolver();
             services.AddSignalR();
             services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
+
+            services.AddScoped<IEmailService, EmailService>();
             services.Configure<SMSSettings>(Configuration.GetSection("SMSSettings"));
 
             // services.AddIdentity<ApplicationUser, IdentityRole>()... // Old provider syntax

@@ -14,19 +14,15 @@
 
 	<ItemGroup>
 	  <Compile Remove="assets\**" />
-	  <Compile Remove="Controllers\Account\**" />
 	  <Compile Remove="NewFolder\**" />
 	  <Compile Remove="wwwroot\**" />
 	  <Content Remove="assets\**" />
-	  <Content Remove="Controllers\Account\**" />
 	  <Content Remove="NewFolder\**" />
 	  <Content Remove="wwwroot\**" />
 	  <EmbeddedResource Remove="assets\**" />
-	  <EmbeddedResource Remove="Controllers\Account\**" />
 	  <EmbeddedResource Remove="NewFolder\**" />
 	  <EmbeddedResource Remove="wwwroot\**" />
 	  <None Remove="assets\**" />
-	  <None Remove="Controllers\Account\**" />
 	  <None Remove="NewFolder\**" />
 	  <None Remove="wwwroot\**" />
 	</ItemGroup>
