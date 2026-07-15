@@ -54,13 +54,13 @@ namespace API.Controllers.Account
             var roleExist = await _roleManager.FindByIdAsync(model.Id);
             if (roleExist == null)
             {
-                return BadRequest(new { message = "No such role found", messageDescription = "", messageType = "error" });
+                return BadRequest(new { message = "No Such Role Found", messageDescription = "", messageType = "error" });
             }
 
             var roleNameExist = await _roleManager.FindByNameAsync(model.Name);
             if (roleNameExist != null && roleNameExist.Id != model.Id)
             {
-                return Ok(new { message = "Role already exists", messageDescription = "", messageType = "warning" });
+                return Ok(new { message = "Role Already Exists", messageDescription = "", messageType = "warning" });
             }
 
             if (roleExist.Name != model.Name)
@@ -70,7 +70,7 @@ namespace API.Controllers.Account
                 var result = await _roleManager.UpdateAsync(roleExist);
                 if (result.Succeeded)
                 {
-                    return Ok(new { message = "Role updated successfully", messageDescription = "", messageType = "success" });
+                    return Ok(new { message = "Role Updated Successfully", messageDescription = "", messageType = "success" });
                 }
                 else
                 {
@@ -78,7 +78,7 @@ namespace API.Controllers.Account
                 }
             }
 
-            return Ok(new { message = "No changes detected", messageDescription = "", messageType = "info" });
+            return Ok(new { message = "No Changes Detected", messageDescription = "", messageType = "info" });
         }
 
 
@@ -108,13 +108,13 @@ namespace API.Controllers.Account
             var roleExist = await _roleManager.FindByIdAsync(id);
             if (roleExist == null)
             {
-                return BadRequest(new { message = "No such role found", messageDescription = "", messageType = "error" });
+                return BadRequest(new { message = "No Such Role Found", messageDescription = "", messageType = "error" });
             }
 
             var result = await _roleManager.DeleteAsync(roleExist);
             if (result.Succeeded)
             {
-                return Ok(new { message = "Role deleted successfully", messageDescription = "", messageType = "success" });
+                return Ok(new { message = "Role Deleted Successfully", messageDescription = "", messageType = "success" });
             }
             else
             {

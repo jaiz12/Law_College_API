@@ -147,6 +147,7 @@ namespace API.Controllers.Account
                     return NotFound(new
                     {
                         message = "User not found",
+                        messageDescription = "User is not found.",
                         messageType = "error"
                     });
                 }
