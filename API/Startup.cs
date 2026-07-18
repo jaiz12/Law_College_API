@@ -1,4 +1,8 @@
+using API.Configurations;
+using API.Services;
+using BAL.DependencyResolver;
 using Common.DataContext;
+using DTO.Models.Auth;
 using ExceptionHandling.DependencyResolver;
 using ExceptionHandling.ExceptionManagement;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -12,10 +16,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
-using API.Configurations;
-using BAL.DependencyResolver;
-using DTO.Models.Auth;
-using API.Services;
+using API.Controllers.Services;
 
 namespace API
 {
@@ -63,6 +64,7 @@ namespace API
             services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
 
             services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IFileUploadService, FileUploadService>();
             services.Configure<SMSSettings>(Configuration.GetSection("SMSSettings"));
 
             // services.AddIdentity<ApplicationUser, IdentityRole>()... // Old provider syntax
