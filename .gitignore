@@ -115,6 +115,3 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudio,visualstudiocode,windows,jetbrains,aspnetcore
 
-/API/assets/Amenities
-/API/assets/
-/API/assets/*

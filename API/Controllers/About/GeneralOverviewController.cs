@@ -40,7 +40,7 @@ namespace API.Controllers.About
 
         [HttpPost]
         public async Task<IActionResult> Create(
-            [FromForm] GeneralOverviewPage model)
+            [FromForm] GeneralOverviewDTO model)
         {
             try
             {
@@ -61,7 +61,7 @@ namespace API.Controllers.About
 
                 // Create a model for database
                 var page =
-                    new GeneralOverviewPage
+                    new GeneralOverviewDTO
                     {
                         BannerImage =
                             bannerPath,
@@ -97,7 +97,7 @@ namespace API.Controllers.About
 
         [HttpPut]
         public async Task<IActionResult> Update(
-    [FromForm] GeneralOverviewPage model)
+    [FromForm] GeneralOverviewDTO model)
         {
             try
             {
@@ -147,7 +147,7 @@ namespace API.Controllers.About
 
 
                 var page =
-                    new GeneralOverviewPage
+                    new GeneralOverviewDTO
                     {
                         Id =
                             model.Id,
