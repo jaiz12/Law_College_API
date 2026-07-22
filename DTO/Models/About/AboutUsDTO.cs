@@ -7,12 +7,20 @@ using System.Threading.Tasks;
 
 namespace DTO.Models.About
 {
-    public class VisionMissionDTO
+    public class AboutUsDTO
     {
         public int Id { get; set; }
-        public string? Vision { get; set; }
+        public string? PageName { get; set; }
 
-        public string? Mission { get; set; }
+        public IFormFile? Banner { get; set; }
+        public string? BannerImage { get; set; }
+
+        public IFormFile? Photo { get; set; }
+        public string? Image { get; set; }
+        public string? RemovedBannerImage { get; set; }
+        public string? Name { get; set; }
+
+        public string Description { get; set; } = string.Empty;
 
         public string? MetaTitle { get; set; }
 

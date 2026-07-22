@@ -7,21 +7,23 @@ using System.Threading.Tasks;
 
 namespace DTO.Models.About
 {
-    public class GeneralOverviewDTO
+    public class RecognitionsAndAffiliationsDTO
     {
         public int Id { get; set; }
 
-        public IFormFile? Banner { get; set; }
-        public string? BannerImage { get; set; }
-        public string? RemovedBannerImage { get; set; }
+        public string Title { get; set; } = string.Empty;
 
         public string Description { get; set; } = string.Empty;
 
-        public string? MetaTitle { get; set; }
+        public IFormFile? Image { get; set; }
 
-        public string? MetaDescription { get; set; }
+        public string? CoverImage { get; set; }
 
-        public DateTime CreatedOn { get; set; }
+        public string? ExternalUrl { get; set; } = string.Empty;
+
+        public int DisplayOrder { get; set; }
+
+        public DateTime? CreatedOn { get; set; }
 
         public string? CreatedBy { get; set; }
 

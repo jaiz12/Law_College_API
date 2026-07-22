@@ -1,6 +1,5 @@
-﻿using DTO.Models;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+﻿using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats.Webp;
 
 namespace API.Controllers.Services
 {
@@ -19,35 +18,55 @@ namespace API.Controllers.Services
         }
 
         public async Task<string> UploadAsync(
-            IFormFile file,
-            string module,
-            string submenu)
+    IFormFile file,
+    string module,
+    string submenu)
         {
             if (file == null || file.Length == 0)
                 throw new Exception("No file selected.");
 
-            var extension = Path.GetExtension(file.FileName).ToLower();
+            var extension =
+                Path.GetExtension(file.FileName)
+                .ToLowerInvariant();
 
             var allowed = new[]
             {
-                ".jpg",
-                ".jpeg",
-                ".png",
-                ".gif",
-                ".webp",
+        ".jpg",
+        ".jpeg",
+        ".png",
+        ".gif",
+        ".webp",
 
-                ".pdf",
+        ".pdf",
 
-                ".mp4",
-                ".avi",
-                ".mov",
-                ".mkv"
-            };
+        ".mp4",
+        ".avi",
+        ".mov",
+        ".mkv"
+    };
 
             if (!allowed.Contains(extension))
                 throw new Exception("Invalid file type.");
 
-            var root = Path.Combine("assets");
+            var imageExtensions = new[]
+            {
+        ".jpg",
+        ".jpeg",
+        ".png",
+        ".gif"
+    };
+
+            var isImage =
+                imageExtensions.Contains(extension);
+
+            // Convert supported images to WebP
+            var finalExtension =
+                isImage
+                    ? ".webp"
+                    : extension;
+
+            var root =
+                Path.Combine("assets");
 
             if (!Directory.Exists(root))
                 Directory.CreateDirectory(root);
@@ -56,42 +75,76 @@ namespace API.Controllers.Services
 
             if (string.IsNullOrWhiteSpace(submenu))
             {
-                folder = Path.Combine(
-                    root,
-                    module);
+                folder =
+                    Path.Combine(
+                        root,
+                        module);
             }
             else
             {
-                folder = Path.Combine(
-                    root,
-                    module,
-                    submenu);
+                folder =
+                    Path.Combine(
+                        root,
+                        module,
+                        submenu);
             }
 
             if (!Directory.Exists(folder))
                 Directory.CreateDirectory(folder);
 
             var fileName =
-                $"{Guid.NewGuid()}{extension}";
+                $"{Guid.NewGuid()}{finalExtension}";
 
-            var fullPath = Path.Combine(folder, fileName);
+            var fullPath =
+                Path.Combine(
+                    folder,
+                    fileName);
 
-            using var stream = new FileStream(fullPath, FileMode.Create);
+            if (isImage)
+            {
+                using var inputStream =
+                    file.OpenReadStream();
 
-            await file.CopyToAsync(stream);
+                using var image =
+                    await Image.LoadAsync(inputStream);
 
-            return (string.IsNullOrWhiteSpace(submenu)
-                 ? Path.Combine(
-                     root,
-                     module,
-                     fileName)
-                 : Path.Combine(
-                     root,
-                     module,
-                     submenu,
-                     fileName))
-                 .Replace("\\", "/");
+                var encoder =
+                    new WebpEncoder
+                    {
+                        Quality = 80
+                    };
+
+                await image.SaveAsync(
+                    fullPath,
+                    encoder);
+            }
+            else
+            {
+                using var stream =
+                    new FileStream(
+                        fullPath,
+                        FileMode.Create);
+
+                await file.CopyToAsync(stream);
+            }
+
+            return (
+                string.IsNullOrWhiteSpace(submenu)
+
+                    ? Path.Combine(
+                        root,
+                        module,
+                        fileName)
+
+                    : Path.Combine(
+                        root,
+                        module,
+                        submenu,
+                        fileName)
+
+                ).Replace("\\", "/");
         }
+
         public void Delete(
             string filePath)
         {
