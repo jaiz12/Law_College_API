@@ -1,7 +1,5 @@
 ﻿using API.Controllers.Services;
-using BAL.Services.About.About_Us;
-using BAL.Services.About.Organizational_Structure;
-using Common.DataContext;
+using BAL.Services.About.Statutory_Bodies;
 using DTO.Models.About;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,18 +7,15 @@ namespace API.Controllers.About
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class OrganizationalStructureController : Controller
+    public class StatutoryBodiesController : Controller
     {
-        private readonly ApplicationDbContext _context;
         private readonly IFileUploadService _fileUpload;
-        private readonly IOrganizationalStructureService _organizationalStructureService;
+        private readonly IStatutoryBodiesService _istatutoryBodiesService;
 
-        public OrganizationalStructureController(
-           ApplicationDbContext context, IFileUploadService fileUpload, IOrganizationalStructureService organizationalStructureService)
+        public StatutoryBodiesController(IFileUploadService fileUpload, IStatutoryBodiesService statutoryBodiesService)
         {
-            _context = context;
             _fileUpload = fileUpload;
-            _organizationalStructureService = organizationalStructureService;
+            _istatutoryBodiesService = statutoryBodiesService;
         }
 
         [HttpGet]
@@ -28,7 +23,7 @@ namespace API.Controllers.About
         {
             try
             {
-                var result = await _organizationalStructureService.GetAllAsync();
+                var result = await _istatutoryBodiesService.GetAllAsync();
                 return Ok(result);
             }
             catch (Exception ex)
@@ -42,7 +37,7 @@ namespace API.Controllers.About
         {
             try
             {
-                var result = await _organizationalStructureService.GetByIdAsync(Id);
+                var result = await _istatutoryBodiesService.GetByIdAsync(Id);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -53,7 +48,7 @@ namespace API.Controllers.About
 
         [HttpPost]
         public async Task<IActionResult> Create(
-            [FromForm] OrganizationalStructureDTO model)
+            [FromForm] StatutoryBodiesDTO model)
         {
             string? imagePath = null;
 
@@ -64,29 +59,25 @@ namespace API.Controllers.About
                     await _fileUpload.UploadAsync(
                         model.Photo,
                         "About",
-                        "Organizational Structure"
+                        "Statutory Bodies"
                     );
             }
             try
-            {           
+            {
 
 
                 // Create a model for database
-                var page = new OrganizationalStructureDTO
-                    {
-                        Name = model.Name,
-                        Designation = model.Designation,
-                        Email = model.Email,
-                        Phone   = model.Phone,
-                        ParentId = model.ParentId,
-                        ProfilePhoto = imagePath,
-                        DisplayOrder = model.DisplayOrder,
-                        CreatedBy   = model.CreatedBy,
-                    };
+                var page = new StatutoryBodiesDTO
+                {
+                    Title = model.Title,
+                    Content = model.Content,
+                    Image = imagePath,
+                    CreatedBy = model.CreatedBy,
+                };
 
 
                 // Call business service
-                var result = await _organizationalStructureService.CreateAsync(page);
+                var result = await _istatutoryBodiesService.CreateAsync(page);
                 if (!result.IsSucceeded)
                 {
                     _fileUpload.Delete(imagePath);
@@ -105,9 +96,9 @@ namespace API.Controllers.About
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromForm] OrganizationalStructureDTO model)
+        public async Task<IActionResult> Update([FromForm] StatutoryBodiesDTO model)
         {
-            var existingPage = await _organizationalStructureService.GetByIdAsync(model.Id);
+            var existingPage = await _istatutoryBodiesService.GetByIdAsync(model.Id);
 
 
             if (existingPage == null)
@@ -115,7 +106,7 @@ namespace API.Controllers.About
                 return NotFound(new
                 {
                     message =
-                        "Organizational Structure not found."
+                        "Statutory Body not found."
                 });
             }
 
@@ -123,9 +114,9 @@ namespace API.Controllers.About
 
 
             string? oldImage =
-                row["ProfilePhoto"] == DBNull.Value
+                row["Image"] == DBNull.Value
                     ? null
-                    : row["ProfilePhoto"].ToString();
+                    : row["Image"].ToString();
 
             string? imagePath = oldImage;
 
@@ -134,7 +125,7 @@ namespace API.Controllers.About
                 imagePath = await _fileUpload.UploadAsync(
                                 model.Photo,
                                 "About",
-                                "Organizational Structure"
+                                "Statutory Bodies"
 
                             );
 
@@ -145,25 +136,19 @@ namespace API.Controllers.About
             }
             try
             {
-                
 
 
-                var page =
-                    new OrganizationalStructureDTO
-                    {
-                        Id = model.Id,
-                        Name = model.Name,
-                        Designation = model.Designation,
-                        Email = model.Email,
-                        Phone = model.Phone,
-                        ParentId = model.ParentId,
-                        ProfilePhoto = imagePath,
-                        DisplayOrder = model.DisplayOrder,
-                        UpdatedBy = model.UpdatedBy
-                    };
 
+                var page = new StatutoryBodiesDTO
+                {
+                    Id = model.Id,
+                    Title = model.Title,
+                    Content = model.Content,
+                    Image = imagePath,
+                    UpdatedBy = model.UpdatedBy,
+                };
 
-                var result = await _organizationalStructureService.UpdateAsync(page);
+                var result = await _istatutoryBodiesService.UpdateAsync(page);
 
                 if (!result.IsSucceeded)
                 {
@@ -185,16 +170,16 @@ namespace API.Controllers.About
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromForm] OrganizationalStructureDTO model)
+        public async Task<IActionResult> Delete([FromForm] StatutoryBodiesDTO model)
         {
             try
             {
-                var result = await _organizationalStructureService.deleteAsync(model);
+                var result = await _istatutoryBodiesService.deleteAsync(model);
                 if (result.IsSucceeded)
                 {
-                    if (model.ProfilePhoto != null)
+                    if (model.Image != null)
                     {
-                        _fileUpload.Delete(model.ProfilePhoto);
+                        _fileUpload.Delete(model.Image);
                     }
                 }
                 return Ok(result);
@@ -205,6 +190,5 @@ namespace API.Controllers.About
             }
 
         }
-
     }
 }

@@ -1,19 +1,25 @@
-﻿using Common.DbContext;
+﻿using BAL.Services.About.Faculty;
+using Common.DbContext;
 using DTO.Models.About;
 using DTO.Models.DataResponse;
-using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace BAL.Services.About.Recognitions_And_Affiliations
+namespace BAL.Services.About.Administrative_Staff
 {
-    public class RecognitionsAndAffiliationsService : MyDbContext, IRecognitionsAndAffiliationsService
+    public class AdministrativeStaffService : MyDbContext, IAdministrativeStaffService
     {
+
         public async Task<DataTable> GetAllAsync()
         {
             try
             {
                 OpenContext();
-                var result = await Task.Run(() => _sqlCommand.Select_Table("sp_AboutUs_RecognitionsAndAffiliations_GetAll", CommandType.StoredProcedure));
+                var result = await Task.Run(() => _sqlCommand.Select_Table("sp_AboutUs_AdministrativeStaff_GetAll", CommandType.StoredProcedure));
                 return result;
             }
             catch (Exception ex)
@@ -33,7 +39,7 @@ namespace BAL.Services.About.Recognitions_And_Affiliations
                 OpenContext();
                 _sqlCommand.Clear_CommandParameter();
                 _sqlCommand.Add_Parameter_WithValue("Id", Id);
-                var result = await Task.Run(() => _sqlCommand.Select_Table("sp_AboutUs_RecognitionsAndAffiliations_GetById", CommandType.StoredProcedure));
+                var result = await Task.Run(() => _sqlCommand.Select_Table("sp_AboutUs_AdministrativeStaff_GetById", CommandType.StoredProcedure));
                 return result;
             }
             catch (Exception ex)
@@ -47,7 +53,7 @@ namespace BAL.Services.About.Recognitions_And_Affiliations
         }
 
         public async Task<DataResponse> CreateAsync(
-            RecognitionsAndAffiliationsDTO model)
+            AdministrativeStaffDTO model)
         {
             try
             {
@@ -55,21 +61,23 @@ namespace BAL.Services.About.Recognitions_And_Affiliations
                 string message = null;
                 bool status = false;
                 _sqlCommand.Clear_CommandParameter();
-                _sqlCommand.Add_Parameter_WithValue("Title", model.Title);
-                _sqlCommand.Add_Parameter_WithValue("Description", model.Description);
-                _sqlCommand.Add_Parameter_WithValue("ExternalUrl", model.ExternalUrl);
-                _sqlCommand.Add_Parameter_WithValue("CoverImage", model.CoverImage);
+                _sqlCommand.Add_Parameter_WithValue("Name", model.Name);
+                _sqlCommand.Add_Parameter_WithValue("Designation", model.Designation);
+                _sqlCommand.Add_Parameter_WithValue("Email", model.Email);
+                _sqlCommand.Add_Parameter_WithValue("Phone", model.Phone);
+                _sqlCommand.Add_Parameter_WithValue("ParentId", model.ParentId);
+                _sqlCommand.Add_Parameter_WithValue("ProfilePhoto", model.ProfilePhoto);
                 _sqlCommand.Add_Parameter_WithValue("DisplayOrder", model.DisplayOrder);
                 _sqlCommand.Add_Parameter_WithValue("CreatedBy", model.CreatedBy);
-                var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_RecognitionsAndAffiliations_Create", CommandType.StoredProcedure));
+                var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_AdministrativeStaff_Create", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Recognitions And Affiliations Added Successfully.";
+                    message = "Administrative Staff Added Successfully.";
                     status = true;
                 }
                 else
                 {
-                    message = "Failed to Add Recognitions And Affiliations";
+                    message = "Failed to Add Administrative Staff";
                     status = false;
                 }
                 return new DataResponse(message, status);
@@ -85,7 +93,7 @@ namespace BAL.Services.About.Recognitions_And_Affiliations
         }
 
         public async Task<DataResponse> UpdateAsync(
-            RecognitionsAndAffiliationsDTO model)
+            AdministrativeStaffDTO model)
         {
             try
             {
@@ -94,21 +102,23 @@ namespace BAL.Services.About.Recognitions_And_Affiliations
                 bool status = false;
                 _sqlCommand.Clear_CommandParameter();
                 _sqlCommand.Add_Parameter_WithValue("Id", model.Id);
-                _sqlCommand.Add_Parameter_WithValue("Title", model.Title);
-                _sqlCommand.Add_Parameter_WithValue("Description", model.Description);
-                _sqlCommand.Add_Parameter_WithValue("ExternalUrl", model.ExternalUrl);
-                _sqlCommand.Add_Parameter_WithValue("CoverImage", model.CoverImage);
+                _sqlCommand.Add_Parameter_WithValue("Name", model.Name);
+                _sqlCommand.Add_Parameter_WithValue("Designation", model.Designation);
+                _sqlCommand.Add_Parameter_WithValue("Email", model.Email);
+                _sqlCommand.Add_Parameter_WithValue("Phone", model.Phone);
+                _sqlCommand.Add_Parameter_WithValue("ParentId", model.ParentId);
+                _sqlCommand.Add_Parameter_WithValue("ProfilePhoto", model.ProfilePhoto);
                 _sqlCommand.Add_Parameter_WithValue("DisplayOrder", model.DisplayOrder);
                 _sqlCommand.Add_Parameter_WithValue("UpdatedBy", model.UpdatedBy);
-                var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_RecognitionsAndAffiliations_Update", CommandType.StoredProcedure));
+                var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_AdministrativeStaff_Update", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Recognitions And Affiliations Updated successfully";
+                    message = "Administrative Staff Updated successfully";
                     status = true;
                 }
                 else
                 {
-                    message = "Failed to Update Recognitions And Affiliations";
+                    message = "Failed to Update Administrative Staff";
                     status = false;
                 }
                 return new DataResponse(message, status);
@@ -123,7 +133,7 @@ namespace BAL.Services.About.Recognitions_And_Affiliations
             }
         }
 
-        public async Task<DataResponse> deleteAsync(RecognitionsAndAffiliationsDTO model)
+        public async Task<DataResponse> deleteAsync(AdministrativeStaffDTO model)
         {
             try
             {
@@ -132,15 +142,15 @@ namespace BAL.Services.About.Recognitions_And_Affiliations
                 bool status = false;
                 _sqlCommand.Clear_CommandParameter();
                 _sqlCommand.Add_Parameter_WithValue("Id", model.Id);
-                var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_RecognitionsAndAffiliations_Delete", CommandType.StoredProcedure));
+                var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_AdministrativeStaff_Delete", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Recognitions And Affiliations Deleted successfully";
+                    message = "Administrative Staff Deleted successfully";
                     status = true;
                 }
                 else
                 {
-                    message = "Failed to Delete Recognitions And Affiliations";
+                    message = "Failed to Delete Administrative Staff";
                     status = false;
                 }
                 return new DataResponse(message, status);

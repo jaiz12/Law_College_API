@@ -46,7 +46,6 @@ namespace BAL.Services.About.About_Us
                 _sqlCommand.Add_Parameter_WithValue("PageName", model.PageName);
                 _sqlCommand.Add_Parameter_WithValue("BannerImage", model.BannerImage);
                 _sqlCommand.Add_Parameter_WithValue("Image", model.Image);
-                _sqlCommand.Add_Parameter_WithValue("Name", model.Name);
                 _sqlCommand.Add_Parameter_WithValue("Description", model.Description);
                 _sqlCommand.Add_Parameter_WithValue("MetaTitle", model.MetaTitle);
                 _sqlCommand.Add_Parameter_WithValue("MetaDescription", model.MetaDescription);
@@ -87,7 +86,6 @@ namespace BAL.Services.About.About_Us
                 _sqlCommand.Add_Parameter_WithValue("Id", model.Id);
                 _sqlCommand.Add_Parameter_WithValue("BannerImage", model.BannerImage);
                 _sqlCommand.Add_Parameter_WithValue("Image", model.Image);
-                _sqlCommand.Add_Parameter_WithValue("Name", model.Name);
                 _sqlCommand.Add_Parameter_WithValue("Description", model.Description);
                 _sqlCommand.Add_Parameter_WithValue("MetaTitle", model.MetaTitle);
                 _sqlCommand.Add_Parameter_WithValue("MetaDescription", model.MetaDescription);

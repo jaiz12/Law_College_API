@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace DTO.Models.About
 {
-    public class OrganizationalStructureDTO
+    public class AdministrativeStaffDTO
+
     {
         public int Id { get; set; }
 

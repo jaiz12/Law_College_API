@@ -1,7 +1,9 @@
 ﻿
 using BAL.Services.About.About_Us;
-using BAL.Services.About.Organizational_Structure;
+using BAL.Services.About.Administrative_Staff;
+using BAL.Services.About.Faculty;
 using BAL.Services.About.Recognitions_And_Affiliations;
+using BAL.Services.About.Statutory_Bodies;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BAL.DependencyResolver
@@ -12,8 +14,11 @@ namespace BAL.DependencyResolver
         public static IServiceCollection DIBALResolver(this IServiceCollection services)
         {
             services.AddScoped<IAboutUsService, AboutUsService>();
-            services.AddScoped<IOrganizationalStructureService, OrganizationalStructureService>();
+            services.AddScoped<IInfrastructureService, InfrastructureService>();
+            services.AddScoped<IFacultyService, FacultyService>();
+            services.AddScoped<IAdministrativeStaffService, AdministrativeStaffService>();
             services.AddScoped<IRecognitionsAndAffiliationsService, RecognitionsAndAffiliationsService>();
+            services.AddScoped<IStatutoryBodiesService, StatutoryBodiesService>();
             return services;
         }
     }

@@ -7,23 +7,14 @@ using System.Threading.Tasks;
 
 namespace DTO.Models.About
 {
-    public class AboutUsDTO
+    public class InfrastructureDTO
     {
         public int Id { get; set; }
-        public string? PageName { get; set; }
-
-        public IFormFile? Banner { get; set; }
-        public string? BannerImage { get; set; }
-
         public IFormFile? Photo { get; set; }
         public string? Image { get; set; }
-        public string? RemovedBannerImage { get; set; }
+        public string? Title { get; set; }
 
-        public string Description { get; set; } = string.Empty;
-
-        public string? MetaTitle { get; set; }
-
-        public string? MetaDescription { get; set; }
+        public string? Content { get; set; } 
 
         public DateTime CreatedOn { get; set; }
 

@@ -2,6 +2,7 @@
 using DTO.Models.About;
 using DTO.Models.DataResponse;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,17 +10,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BAL.Services.About.Organizational_Structure
+namespace BAL.Services.About.About_Us
 {
-    public class OrganizationalStructureService : MyDbContext, IOrganizationalStructureService
+    public class InfrastructureService : MyDbContext, IInfrastructureService
     {
-
         public async Task<DataTable> GetAllAsync()
         {
             try
             {
                 OpenContext();
-                var result = await Task.Run(() => _sqlCommand.Select_Table("sp_OrganizationalStructure_GetAll", CommandType.StoredProcedure));
+                var result = await Task.Run(() => _sqlCommand.Select_Table("sp_AboutUs_Infrastructure_GetAll", CommandType.StoredProcedure));
                 return result;
             }
             catch (Exception ex)
@@ -39,7 +39,7 @@ namespace BAL.Services.About.Organizational_Structure
                 OpenContext();
                 _sqlCommand.Clear_CommandParameter();
                 _sqlCommand.Add_Parameter_WithValue("Id", Id);
-                var result = await Task.Run(() => _sqlCommand.Select_Table("sp_OrganizationalStructure_GetById", CommandType.StoredProcedure));
+                var result = await Task.Run(() => _sqlCommand.Select_Table("sp_AboutUs_Infrastructure_GetById", CommandType.StoredProcedure));
                 return result;
             }
             catch (Exception ex)
@@ -53,7 +53,7 @@ namespace BAL.Services.About.Organizational_Structure
         }
 
         public async Task<DataResponse> CreateAsync(
-            OrganizationalStructureDTO model)
+            InfrastructureDTO model)
         {
             try
             {
@@ -61,23 +61,19 @@ namespace BAL.Services.About.Organizational_Structure
                 string message = null;
                 bool status = false;
                 _sqlCommand.Clear_CommandParameter();
-                _sqlCommand.Add_Parameter_WithValue("Name", model.Name);
-                _sqlCommand.Add_Parameter_WithValue("Designation", model.Designation);
-                _sqlCommand.Add_Parameter_WithValue("Email", model.Email);
-                _sqlCommand.Add_Parameter_WithValue("Phone", model.Phone);
-                _sqlCommand.Add_Parameter_WithValue("ParentId", model.ParentId);
-                _sqlCommand.Add_Parameter_WithValue("ProfilePhoto", model.ProfilePhoto);
-                _sqlCommand.Add_Parameter_WithValue("DisplayOrder", model.DisplayOrder);
+                _sqlCommand.Add_Parameter_WithValue("Title", model.Title);
+                _sqlCommand.Add_Parameter_WithValue("Content", model.Content);
+                _sqlCommand.Add_Parameter_WithValue("Image", model.Image);
                 _sqlCommand.Add_Parameter_WithValue("CreatedBy", model.CreatedBy);
-                var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_OrganizationalStructure_Create", CommandType.StoredProcedure));
+                var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_Infrastructure_Create", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Organizational Structure Added Successfully.";
+                    message = "Infrastructure Added Successfully.";
                     status = true;
                 }
                 else
                 {
-                    message = "Failed to Add Organizational Structure";
+                    message = "Failed to Add Infrastructure";
                     status = false;
                 }
                 return new DataResponse(message, status);
@@ -93,7 +89,7 @@ namespace BAL.Services.About.Organizational_Structure
         }
 
         public async Task<DataResponse> UpdateAsync(
-            OrganizationalStructureDTO model)
+            InfrastructureDTO model)
         {
             try
             {
@@ -102,23 +98,19 @@ namespace BAL.Services.About.Organizational_Structure
                 bool status = false;
                 _sqlCommand.Clear_CommandParameter();
                 _sqlCommand.Add_Parameter_WithValue("Id", model.Id);
-                _sqlCommand.Add_Parameter_WithValue("Name", model.Name);
-                _sqlCommand.Add_Parameter_WithValue("Designation", model.Designation);
-                _sqlCommand.Add_Parameter_WithValue("Email", model.Email);
-                _sqlCommand.Add_Parameter_WithValue("Phone", model.Phone);
-                _sqlCommand.Add_Parameter_WithValue("ParentId", model.ParentId);
-                _sqlCommand.Add_Parameter_WithValue("ProfilePhoto", model.ProfilePhoto);
-                _sqlCommand.Add_Parameter_WithValue("DisplayOrder", model.DisplayOrder);
+                _sqlCommand.Add_Parameter_WithValue("Title", model.Title);
+                _sqlCommand.Add_Parameter_WithValue("Content", model.Content);
+                _sqlCommand.Add_Parameter_WithValue("Image", model.Image);
                 _sqlCommand.Add_Parameter_WithValue("UpdatedBy", model.UpdatedBy);
-                var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_OrganizationalStructure_Update", CommandType.StoredProcedure));
+                var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_Infrastructure_Update", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Organizational Structure Updated successfully";
+                    message = "Infrastructure Updated successfully";
                     status = true;
                 }
                 else
                 {
-                    message = "Failed to Update Organizational Structure";
+                    message = "Failed to Update Infrastructure";
                     status = false;
                 }
                 return new DataResponse(message, status);
@@ -133,7 +125,7 @@ namespace BAL.Services.About.Organizational_Structure
             }
         }
 
-        public async Task<DataResponse> deleteAsync(OrganizationalStructureDTO model)
+        public async Task<DataResponse> deleteAsync(InfrastructureDTO model)
         {
             try
             {
@@ -142,15 +134,15 @@ namespace BAL.Services.About.Organizational_Structure
                 bool status = false;
                 _sqlCommand.Clear_CommandParameter();
                 _sqlCommand.Add_Parameter_WithValue("Id", model.Id);
-                var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_OrganizationalStructure_Delete", CommandType.StoredProcedure));
+                var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_Infrastructure_Delete", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Organizational Structure Deleted successfully";
+                    message = "Infrastructure Deleted successfully";
                     status = true;
                 }
                 else
                 {
-                    message = "Failed to Delete Organizational Structure";
+                    message = "Failed to Delete Infrastructure";
                     status = false;
                 }
                 return new DataResponse(message, status);
