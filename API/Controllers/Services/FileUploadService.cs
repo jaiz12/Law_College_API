@@ -53,7 +53,8 @@ namespace API.Controllers.Services
         ".jpg",
         ".jpeg",
         ".png",
-        ".gif"
+        ".gif",
+        ".webp"
     };
 
             var isImage =

@@ -6,6 +6,7 @@ using BAL.Services.About.Recognitions_And_Affiliations;
 using BAL.Services.About.Statutory_Bodies;
 using BAL.Services.ContactUs;
 using BAL.Services.Media_and_Gallery.Album;
+using BAL.Services.Media_and_Gallery.Media;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BAL.DependencyResolver
@@ -23,6 +24,7 @@ namespace BAL.DependencyResolver
             services.AddScoped<IStatutoryBodiesService, StatutoryBodiesService>();
             services.AddScoped<IContactUsService, ContactUsService>();
             services.AddScoped<IAlbumService, AlbumService>();
+            services.AddScoped<IMediaService, MediaService>();
             return services;
         }
     }
