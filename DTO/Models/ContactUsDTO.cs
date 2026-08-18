@@ -8,19 +8,19 @@ namespace DTO.Models
 
         public string? SectionName { get; set; }
 
-        public string? Icon { get; set; }
+        public string? Icon { get; set; } = null;
 
-        public string? Detail { get; set; }
+        public string? Detail { get; set; } = null;
 
-        public string? Name { get; set; }
+        public string? Name { get; set; } = null;
 
-        public string? Link { get; set; }
+        public string? Link { get; set; } = null;
 
-        public string? Type { get; set; }
+        public string? Type { get; set; } = null;
 
-        public string? Latitude { get; set; }
+        public string? Latitude { get; set; } = null;
 
-        public string? Longitude { get; set; }
+        public string? Longitude { get; set; } = null;
 
         public DateTime? CreatedOn { get; set; }
 
