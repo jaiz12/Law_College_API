@@ -103,7 +103,7 @@ namespace BAL.Services.About.Recognitions_And_Affiliations
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_RecognitionsAndAffiliations_Update", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Recognitions And Affiliations Updated successfully";
+                    message = "Recognitions And Affiliations Updated Successfully";
                     status = true;
                 }
                 else
@@ -135,7 +135,7 @@ namespace BAL.Services.About.Recognitions_And_Affiliations
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_RecognitionsAndAffiliations_Delete", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Recognitions And Affiliations Deleted successfully";
+                    message = "Recognitions And Affiliations Deleted Successfully";
                     status = true;
                 }
                 else

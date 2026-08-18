@@ -188,13 +188,13 @@ namespace BAL.Services.Media_and_Gallery.Media
                 if (item)
                 {
                     return new DataResponse(
-                        "Media Added Successfully.",
+                        "Media Added Successfully",
                         true
                     );
                 }
 
                 return new DataResponse(
-                    "Failed to Add Media.",
+                    "Failed to Add Media",
                     false
                 );
             }
@@ -342,13 +342,13 @@ namespace BAL.Services.Media_and_Gallery.Media
                 if (item)
                 {
                     return new DataResponse(
-                        "Media Deleted Successfully.",
+                        "Media Deleted Successfully",
                         true
                     );
                 }
 
                 return new DataResponse(
-                    "Failed to Delete Media.",
+                    "Failed to Delete Media",
                     false
                 );
             }

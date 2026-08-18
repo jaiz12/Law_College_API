@@ -126,14 +126,14 @@ namespace BAL.Services.Media_and_Gallery.Album
                 if (item)
                 {
                     message =
-                        "Album Added Successfully.";
+                        "Album Added Successfully";
 
                     status = true;
                 }
                 else
                 {
                     message =
-                        "Failed to Add Album.";
+                        "Failed to Add Album";
 
                     status = false;
                 }
@@ -207,14 +207,14 @@ namespace BAL.Services.Media_and_Gallery.Album
                 if (item)
                 {
                     message =
-                        "Album Updated Successfully.";
+                        "Album Updated Successfully";
 
                     status = true;
                 }
                 else
                 {
                     message =
-                        "Failed to Update Album.";
+                        "Failed to Update Album";
 
                     status = false;
                 }
@@ -268,14 +268,14 @@ namespace BAL.Services.Media_and_Gallery.Album
                 if (item)
                 {
                     message =
-                        "Album Deleted Successfully.";
+                        "Album Deleted Successfully";
 
                     status = true;
                 }
                 else
                 {
                     message =
-                        "Failed to Delete Album.";
+                        "Failed to Delete Album";
 
                     status = false;
                 }

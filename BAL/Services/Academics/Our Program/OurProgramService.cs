@@ -87,12 +87,12 @@ namespace BAL.Services.Academics.Our_Program
 
                 if (item)
                 {
-                    message = "Our Program  detail added successfully.";
+                    message = "Our Program Added Successfully.";
                     status = true;
                 }
                 else
                 {
-                    message = "Failed to add our program  detail.";
+                    message = "Failed to Add Our Program";
                     status = false;
                 }
 
@@ -160,12 +160,12 @@ namespace BAL.Services.Academics.Our_Program
 
                 if (item)
                 {
-                    message = "Our Program detail updated successfully.";
+                    message = "Our Program Updated Successfully";
                     status = true;
                 }
                 else
                 {
-                    message = "Failed to update our program detail.";
+                    message = "Failed to Update Our Program";
                     status = false;
                 }
 
@@ -215,14 +215,14 @@ namespace BAL.Services.Academics.Our_Program
                 if (item)
                 {
                     message =
-                        "Our Program detail deleted successfully.";
+                        "Our Program Deleted Successfully";
 
                     status = true;
                 }
                 else
                 {
                     message =
-                        "Failed to delete our program detail.";
+                        "Failed to Delete Our Program";
 
                     status = false;
                 }

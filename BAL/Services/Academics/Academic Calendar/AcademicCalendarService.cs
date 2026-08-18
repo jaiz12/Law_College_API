@@ -100,7 +100,7 @@ namespace BAL.Services.Academics.Academic_Calendar
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_Academic_Calendar_Update", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Academic Calendar Updated successfully";
+                    message = "Academic Calendar Updated Successfully";
                     status = true;
                 }
                 else
@@ -132,7 +132,7 @@ namespace BAL.Services.Academics.Academic_Calendar
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_Academic_Calendar_Delete", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Academic Calendar Deleted successfully";
+                    message = "Academic Calendar Deleted Successfully";
                     status = true;
                 }
                 else

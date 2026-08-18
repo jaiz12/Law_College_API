@@ -93,7 +93,7 @@ namespace BAL.Services.About.About_Us
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_Update", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = $"{model.PageName } Updated successfully";
+                    message = $"{model.PageName } Updated Successfully";
                     status = true;
                 }
                 else
@@ -125,7 +125,7 @@ namespace BAL.Services.About.About_Us
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_Delete", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = $"{model.PageName } Deleted successfully";
+                    message = $"{model.PageName } Deleted Successfully";
                     status = true;
                 }
                 else

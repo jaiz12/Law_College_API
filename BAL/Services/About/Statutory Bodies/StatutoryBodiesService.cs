@@ -104,7 +104,7 @@ namespace BAL.Services.About.Statutory_Bodies
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_StatutoryBodies_Update", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Statutory Body Updated successfully";
+                    message = "Statutory Body Updated Successfully";
                     status = true;
                 }
                 else
@@ -136,7 +136,7 @@ namespace BAL.Services.About.Statutory_Bodies
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_StatutoryBodies_Delete", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Statutory Body Deleted successfully";
+                    message = "Statutory Body Deleted Successfully";
                     status = true;
                 }
                 else

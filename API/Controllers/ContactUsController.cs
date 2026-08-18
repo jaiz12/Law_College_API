@@ -129,15 +129,15 @@ namespace API.Controllers
         // DELETE
         // =========================================================
 
-        [HttpDelete("{Id}")]
+        [HttpDelete]
         public async Task<IActionResult> Delete(
-            string Id)
+            [FromForm] ContactUsDTO model)
         {
             try
             {
 
                 var result =
-                    await _contactUsService.DeleteAsync(Id);
+                    await _contactUsService.DeleteAsync(model);
 
                 return Ok(result);
             }

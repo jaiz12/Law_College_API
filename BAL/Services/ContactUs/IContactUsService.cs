@@ -10,6 +10,6 @@ namespace BAL.Services.ContactUs
         Task<DataTable> GetAsync(int Id, string SectionName);
         Task<DataResponse> CreateAsync(ContactUsDTO model);
         Task<DataResponse> UpdateAsync(ContactUsDTO model);
-        Task<DataResponse> DeleteAsync(string Id);
+        Task<DataResponse> DeleteAsync(ContactUsDTO model);
     }
 }

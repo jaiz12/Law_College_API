@@ -105,7 +105,7 @@ namespace BAL.Services.About.About_Us
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_Infrastructure_Update", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Infrastructure Updated successfully";
+                    message = "Infrastructure Updated Successfully";
                     status = true;
                 }
                 else
@@ -137,7 +137,7 @@ namespace BAL.Services.About.About_Us
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_Infrastructure_Delete", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Infrastructure Deleted successfully";
+                    message = "Infrastructure Deleted Successfully";
                     status = true;
                 }
                 else

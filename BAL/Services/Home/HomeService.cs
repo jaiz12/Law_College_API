@@ -108,12 +108,12 @@ namespace BAL.Services.Home
 
                 if (item)
                 {
-                    message = $"{model.PageName} detail added successfully.";
+                    message = $"{model.PageName} Added Successfully";
                     status = true;
                 }
                 else
                 {
-                    message = $"Failed to add {model.PageName} detail.";
+                    message = $"Failed to Add {model.PageName}";
                     status = false;
                 }
 
@@ -195,12 +195,12 @@ namespace BAL.Services.Home
 
                 if (item)
                 {
-                    message = $"{model.PageName} detail updated successfully.";
+                    message = $"{model.PageName} Updated Successfully";
                     status = true;
                 }
                 else
                 {
-                    message = $"Failed to update {model.PageName} detail.";
+                    message = $"Failed to Update {model.PageName}";
                     status = false;
                 }
 
@@ -250,14 +250,14 @@ namespace BAL.Services.Home
                 if (item)
                 {
                     message =
-                        $"{model.PageName} detail deleted successfully.";
+                        $"{model.PageName} Deleted Successfully.";
 
                     status = true;
                 }
                 else
                 {
                     message =
-                        $"Failed to delete {model.PageName} detail.";
+                        $"Failed to Delete {model.PageName}";
 
                     status = false;
                 }

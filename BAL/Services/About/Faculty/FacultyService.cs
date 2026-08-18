@@ -112,7 +112,7 @@ namespace BAL.Services.About.Faculty
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_Faculties_Update", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Faculty Updated successfully";
+                    message = "Faculty Updated Successfully";
                     status = true;
                 }
                 else
@@ -144,7 +144,7 @@ namespace BAL.Services.About.Faculty
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_Faculties_Delete", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Faculty Deleted successfully";
+                    message = "Faculty Deleted Successfully";
                     status = true;
                 }
                 else

@@ -125,12 +125,12 @@ namespace BAL.Services.ContactUs
 
                 if (item)
                 {
-                    message = "Contact detail added successfully.";
+                    message = $"{model.SectionName} Added successfully.";
                     status = true;
                 }
                 else
                 {
-                    message = "Failed to add contact detail.";
+                    message = $"Failed to Add {model.SectionName}";
                     status = false;
                 }
 
@@ -223,12 +223,12 @@ namespace BAL.Services.ContactUs
 
                 if (item)
                 {
-                    message = "Contact detail updated successfully.";
+                    message = $"{model.SectionName} Updated Successfully";
                     status = true;
                 }
                 else
                 {
-                    message = "Failed to update contact detail.";
+                    message = $"Failed to Update {model.SectionName}";
                     status = false;
                 }
 
@@ -252,7 +252,7 @@ namespace BAL.Services.ContactUs
         // DELETE
         // ---------------------------------------------
         public async Task<DataResponse> DeleteAsync(
-            string Id)
+            ContactUsDTO model)
         {
             try
             {
@@ -265,7 +265,7 @@ namespace BAL.Services.ContactUs
 
                 _sqlCommand.Add_Parameter_WithValue(
                     "Id",
-                    Id
+                    model.Id
                 );
 
                 var item = await Task.Run(() =>
@@ -278,14 +278,14 @@ namespace BAL.Services.ContactUs
                 if (item)
                 {
                     message =
-                        "Contact detail deleted successfully.";
+                       $"{model.SectionName} deleted successfully.";
 
                     status = true;
                 }
                 else
                 {
                     message =
-                        "Failed to delete contact detail.";
+                        $"Failed to Delete {model.SectionName}";
 
                     status = false;
                 }
