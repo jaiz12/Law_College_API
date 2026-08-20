@@ -6,10 +6,13 @@ using BAL.Services.About.Recognitions_And_Affiliations;
 using BAL.Services.About.Statutory_Bodies;
 using BAL.Services.Academics.Academic_Calendar;
 using BAL.Services.Academics.Our_Program;
+using BAL.Services.Committee_and_Cell.Legal_Aid_Cell;
 using BAL.Services.ContactUs;
 using BAL.Services.Home;
 using BAL.Services.Media_and_Gallery.Album;
 using BAL.Services.Media_and_Gallery.Media;
+using BAL.Services.News_and_Events.Announcemets;
+using BAL.Services.Student_Life.Library;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BAL.DependencyResolver
@@ -31,6 +34,9 @@ namespace BAL.DependencyResolver
             services.AddScoped<IMediaService, MediaService>();
             services.AddScoped<IOurProgramService, OurProgramService>();
             services.AddScoped<IAcademicCalendarService, AcademicCalendarService>();
+            services.AddScoped<ILibraryService, LibraryService>();
+            services.AddScoped<ILegalAidCellService, LegalAidCellService>();
+            services.AddScoped<IAnnouncementsService, AnnouncementsService>();
             return services;
         }
     }
