@@ -1,6 +1,8 @@
-﻿using Common.DbContext;
+﻿
+using Common.DbContext;
 using DTO.Models;
 using DTO.Models.DataResponse;
+using DTO.Models.Header_and_Footer;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,9 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BAL.Services.ContactUs
+namespace BAL.Services.Header_and_Footer.Logo_And_Title
 {
-    public class ContactUsService: MyDbContext, IContactUsService 
+    internal class HeaderAndFooterService : MyDbContext, IHeaderAndFooterService
     {
 
         // ---------------------------------------------
@@ -38,7 +40,7 @@ namespace BAL.Services.ContactUs
 
                 var result = await Task.Run(() =>
                     _sqlCommand.Select_Table(
-                        "sp_ContactUs_Get",
+                        "sp_HeaderAndFooter_Get",
                         CommandType.StoredProcedure
                     )
                 );
@@ -60,7 +62,7 @@ namespace BAL.Services.ContactUs
         // CREATE
         // ---------------------------------------------
         public async Task<DataResponse> CreateAsync(
-            ContactUsDTO model)
+            HeaderAndFooterDTO model)
         {
             try
             {
@@ -112,13 +114,18 @@ namespace BAL.Services.ContactUs
                 );
 
                 _sqlCommand.Add_Parameter_WithValue(
+                    "LogoPath",
+                    model.LogoPath
+                );
+
+                _sqlCommand.Add_Parameter_WithValue(
                     "CreatedBy",
                     model.CreatedBy
                 );
 
                 var item = await Task.Run(() =>
                     _sqlCommand.Execute_Query(
-                        "sp_ContactUs_Create",
+                        "sp_HeaderAndFooter_Create",
                         CommandType.StoredProcedure
                     )
                 );
@@ -153,7 +160,7 @@ namespace BAL.Services.ContactUs
         // ---------------------------------------------
         // UPDATE
         // ---------------------------------------------
-        public async Task<DataResponse> UpdateAsync(ContactUsDTO model)
+        public async Task<DataResponse> UpdateAsync(HeaderAndFooterDTO model)
         {
             try
             {
@@ -210,13 +217,18 @@ namespace BAL.Services.ContactUs
                 );
 
                 _sqlCommand.Add_Parameter_WithValue(
+                    "LogoPath",
+                    model.LogoPath
+                );
+
+                _sqlCommand.Add_Parameter_WithValue(
                     "UpdatedBy",
                     model.UpdatedBy
                 );
 
                 var item = await Task.Run(() =>
                     _sqlCommand.Execute_Query(
-                        "sp_ContactUs_Update",
+                        "sp_HeaderAndFooter_Update",
                         CommandType.StoredProcedure
                     )
                 );
@@ -252,7 +264,7 @@ namespace BAL.Services.ContactUs
         // DELETE
         // ---------------------------------------------
         public async Task<DataResponse> DeleteAsync(
-            ContactUsDTO model)
+            HeaderAndFooterDTO model)
         {
             try
             {
@@ -270,7 +282,7 @@ namespace BAL.Services.ContactUs
 
                 var item = await Task.Run(() =>
                     _sqlCommand.Execute_Query(
-                        "sp_ContactUs_Delete",
+                        "sp_HeaderAndFooter_Delete",
                         CommandType.StoredProcedure
                     )
                 );

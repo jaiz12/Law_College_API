@@ -7,7 +7,7 @@ using BAL.Services.About.Statutory_Bodies;
 using BAL.Services.Academics.Academic_Calendar;
 using BAL.Services.Academics.Our_Program;
 using BAL.Services.Committee_and_Cell.Legal_Aid_Cell;
-using BAL.Services.ContactUs;
+using BAL.Services.Header_and_Footer.Logo_And_Title;
 using BAL.Services.Home;
 using BAL.Services.Media_and_Gallery.Album;
 using BAL.Services.Media_and_Gallery.Media;
@@ -29,7 +29,7 @@ namespace BAL.DependencyResolver
             services.AddScoped<IAdministrativeStaffService, AdministrativeStaffService>();
             services.AddScoped<IRecognitionsAndAffiliationsService, RecognitionsAndAffiliationsService>();
             services.AddScoped<IStatutoryBodiesService, StatutoryBodiesService>();
-            services.AddScoped<IContactUsService, ContactUsService>();
+            services.AddScoped<IHeaderAndFooterService, HeaderAndFooterService>();
             services.AddScoped<IAlbumService, AlbumService>();
             services.AddScoped<IMediaService, MediaService>();
             services.AddScoped<IOurProgramService, OurProgramService>();

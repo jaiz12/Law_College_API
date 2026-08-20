@@ -1,5 +1,4 @@
-﻿using BAL.Services.ContactUs;
-using BAL.Services.Home;
+﻿using BAL.Services.Home;
 using DTO.Models;
 using Microsoft.AspNetCore.Mvc;
 
