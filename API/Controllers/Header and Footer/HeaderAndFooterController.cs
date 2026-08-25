@@ -62,7 +62,7 @@ namespace API.Controllers.Header_and_Footer
 
 
             // Upload image
-            if (model.LogoPath != null)
+            if (model.Logo != null)
             {
                 logoPath =
                     await _fileUpload.UploadAsync(
