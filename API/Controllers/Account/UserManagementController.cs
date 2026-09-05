@@ -109,7 +109,7 @@ namespace API.Controllers.Account
                 return Ok(new
                 {
                     message = "Success",
-                    messageDescription = "User created successfully.",
+                    messageDescription = "User created Successfully",
                     messageType = "success"
                 });
             }
@@ -263,7 +263,7 @@ namespace API.Controllers.Account
                 return Ok(new
                 {
                     message = "Success",
-                    messageDescription = "User updated successfully.",
+                    messageDescription = "User updated Successfully",
                     messageType = "success"
                 });
             }
@@ -329,7 +329,7 @@ namespace API.Controllers.Account
                 return Ok(new
                 {
                     message = "Success",
-                    messageDescription = "User deleted successfully.",
+                    messageDescription = "User deleted Successfully",
                     messageType = "success"
                 });
             }

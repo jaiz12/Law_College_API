@@ -88,7 +88,7 @@ namespace BAL.Services.News_and_Events.Announcemets
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_NewsAndEvents_Announcemets_Create", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Announcemets Added Successfully.";
+                    message = "Announcemets Added Successfully";
                     status = true;
                 }
                 else

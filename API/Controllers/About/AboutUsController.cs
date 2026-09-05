@@ -42,20 +42,9 @@ namespace API.Controllers.About
         public async Task<IActionResult> Create(
             [FromForm] AboutUsDTO model)
         {
-            string? bannerPath = null;
             string? imagePath = null;
 
 
-            // Upload banner image
-            if (model.Banner != null)
-            {
-                bannerPath =
-                    await _fileUpload.UploadAsync(
-                        model.Banner,
-                        "About",
-                        model.PageName
-                    );
-            }
             // Upload image
             if (model.Photo != null)
             {
@@ -76,7 +65,6 @@ namespace API.Controllers.About
                     new AboutUsDTO
                     {
                         PageName = model.PageName,
-                        BannerImage = bannerPath,
                         Image = imagePath,
                         Description = model.Description,
                         MetaTitle = model.MetaTitle,
@@ -90,10 +78,6 @@ namespace API.Controllers.About
 
                 if (!result.IsSucceeded)
                 {
-                    if (model.Banner != null)
-                    {
-                        _fileUpload.Delete(bannerPath);
-                    }
                     if (model.Photo != null)
                     {
                         _fileUpload.Delete(imagePath);
@@ -104,11 +88,6 @@ namespace API.Controllers.About
             }
             catch (Exception ex)
             {
-
-                if (model.Banner != null)
-                {
-                    _fileUpload.Delete(bannerPath);
-                }
                 if (model.Photo != null)
                 {
                     _fileUpload.Delete(imagePath);
@@ -138,36 +117,12 @@ namespace API.Controllers.About
 
             var row = existingPage.Rows[0];
 
-            string? oldBannerImage =
-                row["BannerImage"] == DBNull.Value
-                    ? null
-                    : row["BannerImage"].ToString();
-
-            string? bannerPath = oldBannerImage;
-
             string? oldImage =
                 row["Image"] == DBNull.Value
                     ? null
                     : row["Image"].ToString();
 
             string? imagePath = oldImage;
-
-
-            if (model.Banner != null)
-            {
-                bannerPath = await _fileUpload.UploadAsync(
-                                model.Banner,
-                                "About",
-                                model.PageName
-
-                            );
-                if (!string.IsNullOrWhiteSpace(oldBannerImage))
-                {
-                    _fileUpload.Delete(
-                        oldBannerImage
-                    );
-                }
-            }
 
             if (model.Photo != null)
             {
@@ -193,7 +148,6 @@ namespace API.Controllers.About
                     {
                         Id = model.Id,
                         PageName = model.PageName,
-                        BannerImage = bannerPath,
                         Image = imagePath,
                         Description = model.Description,
                         MetaTitle = model.MetaTitle,
@@ -205,10 +159,6 @@ namespace API.Controllers.About
                 var result = await _aboutUsService.UpdateAsync(page);
                 if (!result.IsSucceeded)
                 {
-                    if (model.Banner != null)
-                    {
-                        _fileUpload.Delete(bannerPath);
-                    }
                     if (model.Photo != null)
                     {
                         _fileUpload.Delete(imagePath);
@@ -220,10 +170,6 @@ namespace API.Controllers.About
             }
             catch (Exception ex)
             {
-                if (model.Banner != null)
-                {
-                    _fileUpload.Delete(bannerPath);
-                }
                 if (model.Photo != null)
                 {
                     _fileUpload.Delete(imagePath);
@@ -247,10 +193,6 @@ namespace API.Controllers.About
                     if (model.Image != null)
                     {
                         _fileUpload.Delete(model.Image);
-                    }
-                    else if (model.BannerImage != null) 
-                    {
-                        _fileUpload.Delete(model.BannerImage);
                     }
                 }
                 return Ok(result);

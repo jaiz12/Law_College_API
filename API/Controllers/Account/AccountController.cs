@@ -93,7 +93,7 @@ namespace API.Controllers.Account
                 return Ok(new
                 {
                     message = "Login Successful",
-                    messageDescription = "User logged in successfully.",
+                    messageDescription = "User logged in Successfully",
                     messageType = "success",
 
                     token,
@@ -257,7 +257,7 @@ namespace API.Controllers.Account
 
             return Ok(new
             {
-                message = "Password reset successfully."
+                message = "Password reset Successfully"
             });
         }
 

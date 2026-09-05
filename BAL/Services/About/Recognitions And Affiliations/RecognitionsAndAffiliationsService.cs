@@ -64,7 +64,7 @@ namespace BAL.Services.About.Recognitions_And_Affiliations
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_RecognitionsAndAffiliations_Create", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Recognitions And Affiliations Added Successfully.";
+                    message = "Recognitions And Affiliations Added Successfully";
                     status = true;
                 }
                 else

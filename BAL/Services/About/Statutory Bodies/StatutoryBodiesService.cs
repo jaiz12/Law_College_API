@@ -67,7 +67,7 @@ namespace BAL.Services.About.Statutory_Bodies
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_StatutoryBodies_Create", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Statutory Body Added Successfully.";
+                    message = "Statutory Body Added Successfully";
                     status = true;
                 }
                 else

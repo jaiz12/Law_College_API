@@ -72,7 +72,7 @@ namespace BAL.Services.About.Administrative_Staff
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_AdministrativeStaff_Create", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Administrative Staff Added Successfully.";
+                    message = "Administrative Staff Added Successfully";
                     status = true;
                 }
                 else

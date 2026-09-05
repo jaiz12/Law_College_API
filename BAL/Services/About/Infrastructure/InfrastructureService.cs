@@ -68,7 +68,7 @@ namespace BAL.Services.About.About_Us
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_Infrastructure_Create", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Infrastructure Added Successfully.";
+                    message = "Infrastructure Added Successfully";
                     status = true;
                 }
                 else

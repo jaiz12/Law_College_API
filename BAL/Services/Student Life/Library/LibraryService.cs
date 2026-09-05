@@ -82,7 +82,7 @@ namespace BAL.Services.Student_Life.Library
 
                 if (item)
                 {
-                    message = "Library Added successfully.";
+                    message = "Library Added Successfully";
                     status = true;
                 }
                 else
@@ -205,7 +205,7 @@ namespace BAL.Services.Student_Life.Library
                 if (item)
                 {
                     message =
-                       "Library deleted successfully.";
+                       "Library deleted Successfully";
 
                     status = true;
                 }

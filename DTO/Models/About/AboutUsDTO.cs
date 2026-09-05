@@ -12,9 +12,6 @@ namespace DTO.Models.About
         public int Id { get; set; }
         public string? PageName { get; set; }
 
-        public IFormFile? Banner { get; set; }
-        public string? BannerImage { get; set; }
-
         public IFormFile? Photo { get; set; }
         public string? Image { get; set; }
         public string? RemovedBannerImage { get; set; }

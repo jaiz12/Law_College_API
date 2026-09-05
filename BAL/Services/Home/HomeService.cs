@@ -250,7 +250,7 @@ namespace BAL.Services.Home
                 if (item)
                 {
                     message =
-                        $"{model.PageName} Deleted Successfully.";
+                        $"{model.PageName} Deleted Successfully";
 
                     status = true;
                 }

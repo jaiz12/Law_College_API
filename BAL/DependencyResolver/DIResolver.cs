@@ -6,6 +6,7 @@ using BAL.Services.About.Recognitions_And_Affiliations;
 using BAL.Services.About.Statutory_Bodies;
 using BAL.Services.Academics.Academic_Calendar;
 using BAL.Services.Academics.Our_Program;
+using BAL.Services.Banner;
 using BAL.Services.Committee_and_Cell.Legal_Aid_Cell;
 using BAL.Services.Header_and_Footer.Logo_And_Title;
 using BAL.Services.Home;
@@ -22,6 +23,7 @@ namespace BAL.DependencyResolver
 
         public static IServiceCollection DIBALResolver(this IServiceCollection services)
         {
+            services.AddScoped<IBannerService, BannerService>();
             services.AddScoped<IHomeService, HomeService>();
             services.AddScoped<IAboutUsService, AboutUsService>();
             services.AddScoped<IInfrastructureService, InfrastructureService>();

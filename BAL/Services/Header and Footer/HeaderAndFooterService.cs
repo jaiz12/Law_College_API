@@ -132,7 +132,7 @@ namespace BAL.Services.Header_and_Footer.Logo_And_Title
 
                 if (item)
                 {
-                    message = $"{model.SectionName} Added successfully.";
+                    message = $"{model.SectionName} Added Successfully";
                     status = true;
                 }
                 else
@@ -290,7 +290,7 @@ namespace BAL.Services.Header_and_Footer.Logo_And_Title
                 if (item)
                 {
                     message =
-                       $"{model.SectionName} deleted successfully.";
+                       $"{model.SectionName} deleted Successfully";
 
                     status = true;
                 }

@@ -87,7 +87,7 @@ namespace BAL.Services.Academics.Our_Program
 
                 if (item)
                 {
-                    message = "Our Program Added Successfully.";
+                    message = "Our Program Added Successfully";
                     status = true;
                 }
                 else

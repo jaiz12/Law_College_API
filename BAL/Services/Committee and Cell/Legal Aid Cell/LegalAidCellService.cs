@@ -75,7 +75,7 @@ namespace BAL.Services.Committee_and_Cell.Legal_Aid_Cell
 
                 if (item)
                 {
-                    message = "Legal Aid Cell Added successfully.";
+                    message = "Legal Aid Cell Added Successfully";
                     status = true;
                 }
                 else
@@ -198,7 +198,7 @@ namespace BAL.Services.Committee_and_Cell.Legal_Aid_Cell
                 if (item)
                 {
                     message =
-                       "Legal Aid Cell deleted successfully.";
+                       "Legal Aid Cell deleted Successfully";
 
                     status = true;
                 }

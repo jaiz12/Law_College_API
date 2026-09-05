@@ -44,7 +44,6 @@ namespace BAL.Services.About.About_Us
                 bool status = false;
                 _sqlCommand.Clear_CommandParameter();
                 _sqlCommand.Add_Parameter_WithValue("PageName", model.PageName);
-                _sqlCommand.Add_Parameter_WithValue("BannerImage", model.BannerImage);
                 _sqlCommand.Add_Parameter_WithValue("Image", model.Image);
                 _sqlCommand.Add_Parameter_WithValue("Description", model.Description);
                 _sqlCommand.Add_Parameter_WithValue("MetaTitle", model.MetaTitle);
@@ -53,7 +52,7 @@ namespace BAL.Services.About.About_Us
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_Create", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = $"{model.PageName } Added Successfully.";
+                    message = $"{model.PageName } Added Successfully";
                     status = true;
                 }
                 else
@@ -84,7 +83,6 @@ namespace BAL.Services.About.About_Us
                 bool status = false;
                 _sqlCommand.Clear_CommandParameter();
                 _sqlCommand.Add_Parameter_WithValue("Id", model.Id);
-                _sqlCommand.Add_Parameter_WithValue("BannerImage", model.BannerImage);
                 _sqlCommand.Add_Parameter_WithValue("Image", model.Image);
                 _sqlCommand.Add_Parameter_WithValue("Description", model.Description);
                 _sqlCommand.Add_Parameter_WithValue("MetaTitle", model.MetaTitle);
