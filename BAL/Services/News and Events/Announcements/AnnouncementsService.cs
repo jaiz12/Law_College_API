@@ -160,10 +160,22 @@ namespace BAL.Services.News_and_Events.Announcemets
                 _sqlCommand.Add_Parameter_WithValue("Id", Id);
                 _sqlCommand.Add_Parameter_WithValue("UpdatedBy", UpdatedBy);
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_NewsAndEvents_Announcemets_Archive", CommandType.StoredProcedure));
+                
                 if (item)
                 {
-                    message = "Announcemets Archived Successfully";
-                    status = true;
+                    _sqlCommand.Clear_CommandParameter();
+                    _sqlCommand.Add_Parameter_WithValue("Id", Id);
+                    var archiveStatus = await Task.Run(() => _sqlCommand.Select_Table("sp_NewsAndEvents_Announcemets_GetById", CommandType.StoredProcedure));
+                    if (Convert.ToBoolean(archiveStatus.Rows[0]["IsActive"]))
+                    {
+                        message = "Announcemets Un-Archived Successfully";
+                        status = true;
+                    }
+                    else
+                    {
+                        message = "Announcemets Archived Successfully";
+                        status = true;
+                    }
                 }
                 else
                 {

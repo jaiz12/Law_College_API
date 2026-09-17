@@ -13,7 +13,7 @@ namespace DTO.Models.Banner
 
         public string? PageName{ get; set; }
 
-        public string? Content { get; set; }
+        public string? Content { get; set; } = string.Empty;
 
         public string? ImagePath { get; set; }
         public IFormFile? Image { get; set; }
