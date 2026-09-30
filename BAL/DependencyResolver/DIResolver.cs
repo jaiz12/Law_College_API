@@ -6,6 +6,7 @@ using BAL.Services.About.Recognitions_And_Affiliations;
 using BAL.Services.About.Statutory_Bodies;
 using BAL.Services.Academics.Academic_Calendar;
 using BAL.Services.Academics.Our_Program;
+using BAL.Services.Academics.Syllabus;
 using BAL.Services.Banner;
 using BAL.Services.Committee_and_Cell.Legal_Aid_Cell;
 using BAL.Services.Header_and_Footer.Logo_And_Title;
@@ -39,6 +40,7 @@ namespace BAL.DependencyResolver
             services.AddScoped<ILibraryService, LibraryService>();
             services.AddScoped<ILegalAidCellService, LegalAidCellService>();
             services.AddScoped<IAnnouncementsService, AnnouncementsService>();
+            services.AddScoped<ISyllabusService, SyllabusService>();
             return services;
         }
     }
