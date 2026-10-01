@@ -1,22 +1,21 @@
 ﻿using API.Controllers.Services;
-using BAL.Services.Academics.Syllabus;
-using BAL.Services.Admissions;
-using DTO.Models.Academics;
-using DTO.Models.Admissions;
+using BAL.Services.Examinations;
+using BAL.Services.Examinations;
+using DTO.Models.Examinations;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Controllers.Admissions
+namespace API.Controllers.Examinations
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ProspectusController : Controller
+    public class NotificationsController : Controller
     {
         private readonly IFileUploadService _fileUpload;
-        private readonly IProspectusService _prospectusService;
-        public ProspectusController(IFileUploadService fileUpload, IProspectusService prospectusService)
+        private readonly INotificationsService  _notificationsService;
+        public NotificationsController(IFileUploadService fileUpload, INotificationsService notificationsService)
         {
             _fileUpload = fileUpload;
-            _prospectusService = prospectusService;
+            _notificationsService = notificationsService;
         }
 
         [HttpGet]
@@ -24,7 +23,7 @@ namespace API.Controllers.Admissions
         {
             try
             {
-                var result = await _prospectusService.GetAllAsync();
+                var result = await _notificationsService.GetAllAsync();
                 return Ok(result);
             }
             catch (Exception ex)
@@ -38,7 +37,7 @@ namespace API.Controllers.Admissions
         {
             try
             {
-                var result = await _prospectusService.GetByIdAsync(Id);
+                var result = await _notificationsService.GetByIdAsync(Id);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -49,7 +48,7 @@ namespace API.Controllers.Admissions
 
         [HttpPost]
         public async Task<IActionResult> Create(
-            [FromForm] ProspectusDTO model)
+            [FromForm] NotificationsDTO model)
         {
             string? filePath = null;
 
@@ -59,8 +58,8 @@ namespace API.Controllers.Admissions
                 filePath =
                     await _fileUpload.UploadAsync(
                         model.File,
-                        "Admissions",
-                        "Prospectus"
+                        "Examinations",
+                        "Notifications"
                     );
             }
             try
@@ -68,7 +67,7 @@ namespace API.Controllers.Admissions
 
 
                 // Create a model for database
-                var page = new ProspectusDTO
+                var page = new NotificationsDTO
                 {
                     Title = model.Title,
                     FilePath = filePath,
@@ -77,7 +76,7 @@ namespace API.Controllers.Admissions
 
 
                 // Call business service
-                var result = await _prospectusService.CreateAsync(page);
+                var result = await _notificationsService.CreateAsync(page);
                 if (!result.IsSucceeded)
                 {
                     _fileUpload.Delete(filePath);
@@ -96,9 +95,9 @@ namespace API.Controllers.Admissions
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromForm] ProspectusDTO model)
+        public async Task<IActionResult> Update([FromForm] NotificationsDTO model)
         {
-            var existingPage = await _prospectusService.GetByIdAsync(model.Id);
+            var existingPage = await _notificationsService.GetByIdAsync(model.Id);
 
 
             if (existingPage == null)
@@ -106,7 +105,7 @@ namespace API.Controllers.Admissions
                 return NotFound(new
                 {
                     message =
-                        "Prospectus not found."
+                        "Notifications not found."
                 });
             }
 
@@ -124,8 +123,8 @@ namespace API.Controllers.Admissions
             {
                 filePath = await _fileUpload.UploadAsync(
                                 model.File,
-                                "Admissions",
-                                "Prospectus"
+                                "Examinations",
+                                "Notifications"
 
                             );
 
@@ -138,7 +137,7 @@ namespace API.Controllers.Admissions
             {
 
                 var page =
-                    new ProspectusDTO
+                    new NotificationsDTO
                     {
                         Id = model.Id,
                         Title = model.Title,
@@ -147,7 +146,7 @@ namespace API.Controllers.Admissions
                     };
 
 
-                var result = await _prospectusService.UpdateAsync(page);
+                var result = await _notificationsService.UpdateAsync(page);
 
                 if (!result.IsSucceeded)
                 {
@@ -169,11 +168,11 @@ namespace API.Controllers.Admissions
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromForm] ProspectusDTO model)
+        public async Task<IActionResult> Delete([FromForm] NotificationsDTO model)
         {
             try
             {
-                var result = await _prospectusService.deleteAsync(model);
+                var result = await _notificationsService.deleteAsync(model);
                 if (result.IsSucceeded)
                 {
                     if (model.FilePath != null)

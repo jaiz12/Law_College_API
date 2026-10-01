@@ -11,6 +11,7 @@ using BAL.Services.Academics.Syllabus;
 using BAL.Services.Admissions;
 using BAL.Services.Banner;
 using BAL.Services.Committee_and_Cell.Legal_Aid_Cell;
+using BAL.Services.Examinations;
 using BAL.Services.Header_and_Footer.Logo_And_Title;
 using BAL.Services.Home;
 using BAL.Services.Media_and_Gallery.Album;
@@ -45,6 +46,7 @@ namespace BAL.DependencyResolver
             services.AddScoped<ISyllabusService, SyllabusService>();
             services.AddScoped<IResearchAndPublicationsService, ResearchAndPublicationsService>();
             services.AddScoped<IProspectusService, ProspectusService>();
+            services.AddScoped<INotificationsService, NotificationsService>();
             return services;
         }
     }
