@@ -66,6 +66,7 @@ namespace API.Controllers.Header_and_Footer
             {
                 logoPath =
                     await _fileUpload.UploadAsync(
+                        model.Name,
                         model.Logo,
                         "Header And Footer",
                         model.SectionName
@@ -138,6 +139,7 @@ namespace API.Controllers.Header_and_Footer
             if (model.Logo != null)
             {
                 logoPath = await _fileUpload.UploadAsync(
+                    model.Name,
                                 model.Logo,
                                 "Header And Footer",
                                 model.SectionName

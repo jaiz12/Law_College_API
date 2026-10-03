@@ -56,20 +56,18 @@ namespace BAL.Services.About.Recognitions_And_Affiliations
                 bool status = false;
                 _sqlCommand.Clear_CommandParameter();
                 _sqlCommand.Add_Parameter_WithValue("Title", model.Title);
-                _sqlCommand.Add_Parameter_WithValue("Description", model.Description);
-                _sqlCommand.Add_Parameter_WithValue("ExternalUrl", model.ExternalUrl);
-                _sqlCommand.Add_Parameter_WithValue("CoverImage", model.CoverImage);
-                _sqlCommand.Add_Parameter_WithValue("DisplayOrder", model.DisplayOrder);
+                _sqlCommand.Add_Parameter_WithValue("Content", model.Content);
+                _sqlCommand.Add_Parameter_WithValue("FilePath", model.FilePath);
                 _sqlCommand.Add_Parameter_WithValue("CreatedBy", model.CreatedBy);
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_RecognitionsAndAffiliations_Create", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Recognitions And Affiliations Added Successfully";
+                    message = "Recognitions And Affiliations Saved Successfully";
                     status = true;
                 }
                 else
                 {
-                    message = "Failed to Add Recognitions And Affiliations";
+                    message = "Failed to Save Recognitions And Affiliations";
                     status = false;
                 }
                 return new DataResponse(message, status);
@@ -95,10 +93,8 @@ namespace BAL.Services.About.Recognitions_And_Affiliations
                 _sqlCommand.Clear_CommandParameter();
                 _sqlCommand.Add_Parameter_WithValue("Id", model.Id);
                 _sqlCommand.Add_Parameter_WithValue("Title", model.Title);
-                _sqlCommand.Add_Parameter_WithValue("Description", model.Description);
-                _sqlCommand.Add_Parameter_WithValue("ExternalUrl", model.ExternalUrl);
-                _sqlCommand.Add_Parameter_WithValue("CoverImage", model.CoverImage);
-                _sqlCommand.Add_Parameter_WithValue("DisplayOrder", model.DisplayOrder);
+                _sqlCommand.Add_Parameter_WithValue("Content", model.Content);
+                _sqlCommand.Add_Parameter_WithValue("FilePath", model.FilePath);
                 _sqlCommand.Add_Parameter_WithValue("UpdatedBy", model.UpdatedBy);
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_RecognitionsAndAffiliations_Update", CommandType.StoredProcedure));
                 if (item)

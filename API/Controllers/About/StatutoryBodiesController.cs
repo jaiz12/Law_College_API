@@ -50,18 +50,7 @@ namespace API.Controllers.About
         public async Task<IActionResult> Create(
             [FromForm] StatutoryBodiesDTO model)
         {
-            string? imagePath = null;
-
-            // Upload image
-            if (model.Photo != null)
-            {
-                imagePath =
-                    await _fileUpload.UploadAsync(
-                        model.Photo,
-                        "About",
-                        "Statutory Bodies"
-                    );
-            }
+            
             try
             {
 
@@ -71,23 +60,17 @@ namespace API.Controllers.About
                 {
                     Title = model.Title,
                     Content = model.Content,
-                    Image = imagePath,
                     CreatedBy = model.CreatedBy,
                 };
 
 
                 // Call business service
                 var result = await _istatutoryBodiesService.CreateAsync(page);
-                if (!result.IsSucceeded)
-                {
-                    _fileUpload.Delete(imagePath);
-                }
 
                 return Ok(result);
             }
             catch (Exception ex)
             {
-                _fileUpload.Delete(imagePath);
                 return BadRequest(new
                 {
                     message = ex.Message
@@ -98,69 +81,25 @@ namespace API.Controllers.About
         [HttpPut]
         public async Task<IActionResult> Update([FromForm] StatutoryBodiesDTO model)
         {
-            var existingPage = await _istatutoryBodiesService.GetByIdAsync(model.Id);
-
-
-            if (existingPage == null)
-            {
-                return NotFound(new
-                {
-                    message =
-                        "Statutory Body not found."
-                });
-            }
-
-            var row = existingPage.Rows[0];
-
-
-            string? oldImage =
-                row["Image"] == DBNull.Value
-                    ? null
-                    : row["Image"].ToString();
-
-            string? imagePath = oldImage;
-
-            if (model.Photo != null)
-            {
-                imagePath = await _fileUpload.UploadAsync(
-                                model.Photo,
-                                "About",
-                                "Statutory Bodies"
-
-                            );
-
-                if (!string.IsNullOrWhiteSpace(oldImage))
-                {
-                    _fileUpload.Delete(oldImage);
-                }
-            }
+            
             try
             {
-
-
 
                 var page = new StatutoryBodiesDTO
                 {
                     Id = model.Id,
                     Title = model.Title,
                     Content = model.Content,
-                    Image = imagePath,
                     UpdatedBy = model.UpdatedBy,
                 };
 
                 var result = await _istatutoryBodiesService.UpdateAsync(page);
-
-                if (!result.IsSucceeded)
-                {
-                    _fileUpload.Delete(imagePath);
-                }
 
                 return Ok(result);
 
             }
             catch (Exception ex)
             {
-                _fileUpload.Delete(imagePath);
                 return BadRequest(new
                 {
                     message =
@@ -169,19 +108,12 @@ namespace API.Controllers.About
             }
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> Delete([FromForm] StatutoryBodiesDTO model)
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> Delete(string Id)
         {
             try
             {
-                var result = await _istatutoryBodiesService.deleteAsync(model);
-                if (result.IsSucceeded)
-                {
-                    if (model.Image != null)
-                    {
-                        _fileUpload.Delete(model.Image);
-                    }
-                }
+                var result = await _istatutoryBodiesService.deleteAsync(Id);
                 return Ok(result);
             }
             catch (Exception ex)

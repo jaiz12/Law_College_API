@@ -188,13 +188,13 @@ namespace BAL.Services.Media_and_Gallery.Media
                 if (item)
                 {
                     return new DataResponse(
-                        "Media Added Successfully",
+                        "Media Saved Successfully",
                         true
                     );
                 }
 
                 return new DataResponse(
-                    "Failed to Add Media",
+                    "Failed to Save Media",
                     false
                 );
             }

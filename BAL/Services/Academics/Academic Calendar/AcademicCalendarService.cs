@@ -62,12 +62,12 @@ namespace BAL.Services.Academics.Academic_Calendar
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_Academic_Calendar_Create", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Academic Calendar Added Successfully";
+                    message = "Academic Calendar Saved Successfully";
                     status = true;
                 }
                 else
                 {
-                    message = "Failed to Add Academic Calendar";
+                    message = "Failed to Save Academic Calendar";
                     status = false;
                 }
                 return new DataResponse(message, status);

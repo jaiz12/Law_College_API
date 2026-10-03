@@ -67,12 +67,12 @@ namespace BAL.Services.Academics.Syllabus
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_Academic_Syllabus_Create", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Syllabus Added Successfully";
+                    message = "Syllabus Saved Successfully";
                     status = true;
                 }
                 else
                 {
-                    message = "Failed to Add Syllabus";
+                    message = "Failed to Save Syllabus";
                     status = false;
                 }
                 return new DataResponse(message, status);

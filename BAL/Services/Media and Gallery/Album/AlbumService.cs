@@ -126,14 +126,14 @@ namespace BAL.Services.Media_and_Gallery.Album
                 if (item)
                 {
                     message =
-                        "Album Added Successfully";
+                        "Album Saved Successfully";
 
                     status = true;
                 }
                 else
                 {
                     message =
-                        "Failed to Add Album";
+                        "Failed to Save Album";
 
                     status = false;
                 }

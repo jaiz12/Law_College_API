@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace BAL.Services.About.About_Us
 {
-    internal class AboutUsService : MyDbContext, IAboutUsService
+    public class AboutUsService : MyDbContext, IAboutUsService
     {
         public async Task<DataTable> GetAsync(int Id, string PageName)
         {
@@ -52,12 +52,12 @@ namespace BAL.Services.About.About_Us
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_Create", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = $"{model.PageName } Added Successfully";
+                    message = $"{model.PageName } Saved Successfully";
                     status = true;
                 }
                 else
                 {
-                    message = $"Failed to Add {model.PageName}";
+                    message = $"Failed to Save {model.PageName}";
                     status = false;
                 }
                 return new DataResponse(message, status);

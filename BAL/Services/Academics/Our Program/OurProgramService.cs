@@ -87,12 +87,12 @@ namespace BAL.Services.Academics.Our_Program
 
                 if (item)
                 {
-                    message = "Our Program Added Successfully";
+                    message = "Our Program Saved Successfully";
                     status = true;
                 }
                 else
                 {
-                    message = "Failed to Add Our Program";
+                    message = "Failed to Save Our Program";
                     status = false;
                 }
 

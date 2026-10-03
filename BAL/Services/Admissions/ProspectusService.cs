@@ -66,12 +66,12 @@ namespace BAL.Services.Admissions
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_Admissions_Prospectus_Create", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Prospectus Added Successfully";
+                    message = "Prospectus Saved Successfully";
                     status = true;
                 }
                 else
                 {
-                    message = "Failed to Add Prospectus";
+                    message = "Failed to Save Prospectus";
                     status = false;
                 }
                 return new DataResponse(message, status);

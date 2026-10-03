@@ -56,6 +56,7 @@ namespace API.Controllers.Academics
             {
                 filePath =
                     await _fileUpload.UploadAsync(
+                        model.Title,
                         model.File,
                         "Academic",
                         "Syllabus"
@@ -122,6 +123,7 @@ namespace API.Controllers.Academics
             if (model.File != null)
             {
                 filePath = await _fileUpload.UploadAsync(
+                    model.Title,
                                 model.File,
                                 "Academic",
                                 "Syllabus"

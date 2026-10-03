@@ -50,14 +50,15 @@ namespace API.Controllers.About
         public async Task<IActionResult> Create(
             [FromForm] RecognitionsAndAffiliationsDTO model)
         {
-            string? imagePath = null;
+            string? filePath = null;
 
             // Upload image
-            if (model.Image != null)
+            if (model.File != null)
             {
-                imagePath =
+                filePath =
                     await _fileUpload.UploadAsync(
-                        model.Image,
+                        model.Title,
+                        model.File,
                         "About",
                         "Recognitions and Affiliations"
                     );
@@ -70,10 +71,8 @@ namespace API.Controllers.About
                 var page = new RecognitionsAndAffiliationsDTO
                 {
                     Title = model.Title,
-                    Description = model.Description,
-                    ExternalUrl = model.ExternalUrl,
-                    CoverImage = imagePath,
-                    DisplayOrder = model.DisplayOrder,
+                    Content = model.Content,
+                    FilePath = filePath,
                     CreatedBy = model.CreatedBy,
                 };
 
@@ -82,14 +81,14 @@ namespace API.Controllers.About
                 var result = await _recognitionsAndAffiliationsService.CreateAsync(page);
                 if (!result.IsSucceeded)
                 {
-                    _fileUpload.Delete(imagePath);
+                    _fileUpload.Delete(filePath);
                 }
 
                 return Ok(result);
             }
             catch (Exception ex)
             {
-                _fileUpload.Delete(imagePath);
+                _fileUpload.Delete(filePath);
                 return BadRequest(new
                 {
                     message = ex.Message
@@ -115,25 +114,26 @@ namespace API.Controllers.About
             var row = existingPage.Rows[0];
 
 
-            string? oldImage =
-                row["CoverImage"] == DBNull.Value
+            string? oldfilePath =
+                row["FilePath"] == DBNull.Value
                     ? null
-                    : row["CoverImage"].ToString();
+                    : row["FilePath"].ToString();
 
-            string? imagePath = oldImage;
+            string? filePath = oldfilePath;
 
-            if (model.Image != null)
+            if (model.File != null)
             {
-                imagePath = await _fileUpload.UploadAsync(
-                                model.Image,
+                filePath = await _fileUpload.UploadAsync(
+                    model.Title,
+                                model.File,
                                 "About",
                                 "Recognitions and Affiliations"
 
                             );
 
-                if (!string.IsNullOrWhiteSpace(oldImage))
+                if (!string.IsNullOrWhiteSpace(oldfilePath))
                 {
-                    _fileUpload.Delete(oldImage);
+                    _fileUpload.Delete(oldfilePath);
                 }
             }
             try
@@ -146,10 +146,8 @@ namespace API.Controllers.About
                     {
                         Id = model.Id,
                         Title = model.Title,
-                        Description = model.Description,
-                        ExternalUrl = model.ExternalUrl,
-                        CoverImage = imagePath,
-                        DisplayOrder = model.DisplayOrder,
+                        Content = model.Content,
+                        FilePath = filePath,
                         UpdatedBy = model.UpdatedBy
                     };
 
@@ -158,7 +156,7 @@ namespace API.Controllers.About
 
                 if (!result.IsSucceeded)
                 {
-                    _fileUpload.Delete(imagePath);
+                    _fileUpload.Delete(filePath);
                 }
 
                 return Ok(result);
@@ -166,7 +164,7 @@ namespace API.Controllers.About
             }
             catch (Exception ex)
             {
-                _fileUpload.Delete(imagePath);
+                _fileUpload.Delete(filePath);
                 return BadRequest(new
                 {
                     message =
@@ -183,9 +181,9 @@ namespace API.Controllers.About
                 var result = await _recognitionsAndAffiliationsService.deleteAsync(model);
                 if (result.IsSucceeded)
                 {
-                    if (model.CoverImage != null)
+                    if (model.FilePath != null)
                     {
-                        _fileUpload.Delete(model.CoverImage);
+                        _fileUpload.Delete(model.FilePath);
                     }
                 }
                 return Ok(result);

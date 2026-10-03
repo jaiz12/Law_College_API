@@ -15,6 +15,6 @@ namespace BAL.Services.About.Statutory_Bodies
         Task<DataTable> GetByIdAsync(int Id);
         Task<DataResponse> CreateAsync(StatutoryBodiesDTO model);
         Task<DataResponse> UpdateAsync(StatutoryBodiesDTO model);
-        Task<DataResponse> deleteAsync(StatutoryBodiesDTO model);
+        Task<DataResponse> deleteAsync(string Id);
     }
 }

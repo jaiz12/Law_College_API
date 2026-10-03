@@ -69,6 +69,11 @@ namespace BAL.Services.Student_Life.Library
                 );
 
                 _sqlCommand.Add_Parameter_WithValue(
+                    "Description",
+                    model.Description
+                );
+
+                _sqlCommand.Add_Parameter_WithValue(
                     "CreatedBy",
                     model.CreatedBy
                 );
@@ -82,12 +87,12 @@ namespace BAL.Services.Student_Life.Library
 
                 if (item)
                 {
-                    message = "Library Added Successfully";
+                    message = "Library Saved Successfully";
                     status = true;
                 }
                 else
                 {
-                    message = "Failed to Add Library";
+                    message = "Failed to Save Library";
                     status = false;
                 }
 
@@ -134,6 +139,11 @@ namespace BAL.Services.Student_Life.Library
                 _sqlCommand.Add_Parameter_WithValue(
                     "ExternalLink",
                     model.ExternalLink
+                );
+
+                _sqlCommand.Add_Parameter_WithValue(
+                    "Description",
+                    model.Description
                 );
 
                 _sqlCommand.Add_Parameter_WithValue(

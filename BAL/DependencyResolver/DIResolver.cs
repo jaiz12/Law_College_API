@@ -9,7 +9,12 @@ using BAL.Services.Academics.Our_Program;
 using BAL.Services.Academics.Research_And_Publications;
 using BAL.Services.Academics.Syllabus;
 using BAL.Services.Admissions;
+using BAL.Services.Alumni.Alumni_Events;
+using BAL.Services.Alumni.Governing_Body;
+using BAL.Services.Alumni.Newsletters;
+using BAL.Services.Alumni.Notable_Alumni;
 using BAL.Services.Banner;
+using BAL.Services.Committee_and_Cell;
 using BAL.Services.Committee_and_Cell.Legal_Aid_Cell;
 using BAL.Services.Examinations;
 using BAL.Services.Header_and_Footer.Logo_And_Title;
@@ -47,6 +52,11 @@ namespace BAL.DependencyResolver
             services.AddScoped<IResearchAndPublicationsService, ResearchAndPublicationsService>();
             services.AddScoped<IProspectusService, ProspectusService>();
             services.AddScoped<INotificationsService, NotificationsService>();
+            services.AddScoped<ICommitteeAndCellService, CommitteeAndCellService>();
+            services.AddScoped<IGoverningBodyService, GoverningBodyService>();
+            services.AddScoped<IAlumniEventsService, AlumniEventsService>();
+            services.AddScoped<INotableAlumniService, NotableAlumniService>();
+            services.AddScoped<INewslettersService, NewslettersService>();
             return services;
         }
     }

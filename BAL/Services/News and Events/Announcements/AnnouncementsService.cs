@@ -88,12 +88,12 @@ namespace BAL.Services.News_and_Events.Announcemets
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_NewsAndEvents_Announcemets_Create", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Announcemets Added Successfully";
+                    message = "Announcemets Saved Successfully";
                     status = true;
                 }
                 else
                 {
-                    message = "Failed to Add Announcemets";
+                    message = "Failed to Save Announcemets";
                     status = false;
                 }
                 return new DataResponse(message, status);
@@ -206,12 +206,12 @@ namespace BAL.Services.News_and_Events.Announcemets
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_NewsAndEvents_Announcemets_Delete", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "News & Events Archives Deleted Successfully";
+                    message = "Announcement Deleted Successfully";
                     status = true;
                 }
                 else
                 {
-                    message = "Failed to Delete News & Events Archives";
+                    message = "Failed to Delete Announcement";
                     status = false;
                 }
                 return new DataResponse(message, status);

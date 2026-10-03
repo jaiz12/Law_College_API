@@ -1,11 +1,12 @@
 ﻿using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats.Webp;
+using System.Text.RegularExpressions;
 
 namespace API.Controllers.Services
 {
     public interface IFileUploadService
     {
-        Task<string> UploadAsync(IFormFile file, string module, string submenu);
+        Task<string> UploadAsync(string name, IFormFile file, string module, string submenu);
         void Delete(string filePath);
     }
     public class FileUploadService : IFileUploadService
@@ -18,6 +19,7 @@ namespace API.Controllers.Services
         }
 
         public async Task<string> UploadAsync(
+            string name,
     IFormFile file,
     string module,
     string submenu)
@@ -92,9 +94,13 @@ namespace API.Controllers.Services
 
             if (!Directory.Exists(folder))
                 Directory.CreateDirectory(folder);
+            // convert to lowercase and replace space with underscores
 
+            string lowercaseFileName = name.ToLower().Replace(" ", "_");
+
+            string cleanFileName = Regex.Replace(lowercaseFileName, @"[^a-z0-9_]", "");
             var fileName =
-                $"{Guid.NewGuid()}{finalExtension}";
+                $"{cleanFileName}{finalExtension}";
 
             var fullPath =
                 Path.Combine(

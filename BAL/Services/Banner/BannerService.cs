@@ -68,12 +68,12 @@ namespace BAL.Services.Banner
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_Banner_Create", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Banner Added Successfully";
+                    message = "Banner Saved Successfully";
                     status = true;
                 }
                 else
                 {
-                    message = "Failed to Add Banner";
+                    message = "Failed to Save Banner";
                     status = false;
                 }
                 return new DataResponse(message, status);

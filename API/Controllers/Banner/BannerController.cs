@@ -59,6 +59,7 @@ namespace API.Controllers.Banner
             {
                 imagePath =
                     await _fileUpload.UploadAsync(
+                        model.PageName,
                         model.Image,
                         "Banner",
                         ""
@@ -125,6 +126,7 @@ namespace API.Controllers.Banner
             if (model.Image != null)
             {
                 imagePath = await _fileUpload.UploadAsync(
+                    model.PageName,
                                 model.Image,
                                 "Banner",
                                 ""

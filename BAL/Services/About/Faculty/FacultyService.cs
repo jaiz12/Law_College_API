@@ -71,12 +71,12 @@ namespace BAL.Services.About.Faculty
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_Faculties_Create", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Faculty Added Successfully";
+                    message = "Faculty Saved Successfully";
                     status = true;
                 }
                 else
                 {
-                    message = "Failed to Add Faculty";
+                    message = "Failed to Save Faculty";
                     status = false;
                 }
                 return new DataResponse(message, status);

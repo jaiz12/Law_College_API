@@ -73,6 +73,7 @@ namespace API.Controllers.News_and_Events
             {
                 filePath =
                     await _fileUpload.UploadAsync(
+                        model.Title,
                         model.File,
                         "News and Events",
                         "Announcemets"
@@ -142,6 +143,8 @@ namespace API.Controllers.News_and_Events
             if (model.File != null)
             {
                 filePath = await _fileUpload.UploadAsync(
+
+                        model.Title,
                                 model.File,
                                 "News and Events",
                                 "Announcemets"

@@ -152,12 +152,12 @@ namespace API.Controllers.Media_and_Gallery
                     // Determine file type and upload
                     if (contentType != null && contentType.StartsWith("image/"))
                     {
-                        imagePath = await _fileUpload.UploadAsync(file, "Media And Gallery", "Media");
+                        imagePath = await _fileUpload.UploadAsync(Guid.NewGuid().ToString("P"),file, "Media And Gallery", "Media");
                         uploadedPath = imagePath;
                     }
                     else if (contentType != null && contentType.StartsWith("video/"))
                     {
-                        videoPath = await _fileUpload.UploadAsync(file, "Media And Gallery", "Media");
+                        videoPath = await _fileUpload.UploadAsync(Guid.NewGuid().ToString("P"), file, "Media And Gallery", "Media");
                         uploadedPath = videoPath;
                     }
                     else
@@ -275,14 +275,14 @@ namespace API.Controllers.Media_and_Gallery
                     // Handle New Image Replacement
                     if (contentType != null && contentType.StartsWith("image/"))
                     {
-                        newlyUploadedFile = await _fileUpload.UploadAsync(fileToUpload, "Media And Gallery", "Media");
+                        newlyUploadedFile = await _fileUpload.UploadAsync(Guid.NewGuid().ToString("P"),fileToUpload, "Media And Gallery", "Media");
                         model.Image = newlyUploadedFile;
                         model.Video = null; // Clear video reference when replaced by an image
                     }
                     // Handle New Video Replacement
                     else if (contentType != null && contentType.StartsWith("video/"))
                     {
-                        newlyUploadedFile = await _fileUpload.UploadAsync(fileToUpload, "Media And Gallery", "Media");
+                        newlyUploadedFile = await _fileUpload.UploadAsync(Guid.NewGuid().ToString("P"), fileToUpload, "Media And Gallery", "Media");
                         model.Video = newlyUploadedFile;
                         model.Image = null; // Clear image reference when replaced by a video
                     }

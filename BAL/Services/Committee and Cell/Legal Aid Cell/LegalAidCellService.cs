@@ -75,12 +75,12 @@ namespace BAL.Services.Committee_and_Cell.Legal_Aid_Cell
 
                 if (item)
                 {
-                    message = "Legal Aid Cell Added Successfully";
+                    message = "Legal Aid Cell Saved Successfully";
                     status = true;
                 }
                 else
                 {
-                    message = "Failed to Add Legal Aid Cell";
+                    message = "Failed to Save Legal Aid Cell";
                     status = false;
                 }
 

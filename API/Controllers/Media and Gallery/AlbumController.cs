@@ -90,6 +90,7 @@ namespace API.Controllers.Media_and_Gallery
             {
                 model.CoverImage =
                     await _fileUpload.UploadAsync(
+                        model.Name,
                         model.Photo,
                         "Media And Gallery",
                         "Album"
@@ -150,6 +151,7 @@ namespace API.Controllers.Media_and_Gallery
             {
                 model.CoverImage =
                     await _fileUpload.UploadAsync(
+                        model.Name,
                         model.Photo,
                         "Media And Gallery",
                         "Album"

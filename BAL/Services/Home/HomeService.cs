@@ -108,12 +108,12 @@ namespace BAL.Services.Home
 
                 if (item)
                 {
-                    message = $"{model.PageName} Added Successfully";
+                    message = $"{model.PageName} Saved Successfully";
                     status = true;
                 }
                 else
                 {
-                    message = $"Failed to Add {model.PageName}";
+                    message = $"Failed to Save {model.PageName}";
                     status = false;
                 }
 

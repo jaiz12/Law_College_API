@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace BAL.Services.Header_and_Footer.Logo_And_Title
 {
-    internal class HeaderAndFooterService : MyDbContext, IHeaderAndFooterService
+    public class HeaderAndFooterService : MyDbContext, IHeaderAndFooterService
     {
 
         // ---------------------------------------------
@@ -132,12 +132,12 @@ namespace BAL.Services.Header_and_Footer.Logo_And_Title
 
                 if (item)
                 {
-                    message = $"{model.SectionName} Added Successfully";
+                    message = $"{model.SectionName} Saved Successfully";
                     status = true;
                 }
                 else
                 {
-                    message = $"Failed to Add {model.SectionName}";
+                    message = $"Failed to Save {model.SectionName}";
                     status = false;
                 }
 

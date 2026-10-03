@@ -66,12 +66,12 @@ namespace BAL.Services.Examinations
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_Examinations_Notifications_Create", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Notifications Added Successfully";
+                    message = "Notifications Saved Successfully";
                     status = true;
                 }
                 else
                 {
-                    message = "Failed to Add Notifications";
+                    message = "Failed to Save Notifications";
                     status = false;
                 }
                 return new DataResponse(message, status);

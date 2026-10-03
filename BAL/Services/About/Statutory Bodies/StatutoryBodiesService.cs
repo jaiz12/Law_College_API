@@ -62,17 +62,16 @@ namespace BAL.Services.About.Statutory_Bodies
                 _sqlCommand.Clear_CommandParameter();
                 _sqlCommand.Add_Parameter_WithValue("Title", model.Title);
                 _sqlCommand.Add_Parameter_WithValue("Content", model.Content);
-                _sqlCommand.Add_Parameter_WithValue("Image", model.Image);
                 _sqlCommand.Add_Parameter_WithValue("CreatedBy", model.CreatedBy);
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_StatutoryBodies_Create", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Statutory Body Added Successfully";
+                    message = "Statutory Body Saved Successfully";
                     status = true;
                 }
                 else
                 {
-                    message = "Failed to Add Statutory Body";
+                    message = "Failed to Save Statutory Body";
                     status = false;
                 }
                 return new DataResponse(message, status);
@@ -99,7 +98,6 @@ namespace BAL.Services.About.Statutory_Bodies
                 _sqlCommand.Add_Parameter_WithValue("Id", model.Id);
                 _sqlCommand.Add_Parameter_WithValue("Title", model.Title);
                 _sqlCommand.Add_Parameter_WithValue("Content", model.Content);
-                _sqlCommand.Add_Parameter_WithValue("Image", model.Image);
                 _sqlCommand.Add_Parameter_WithValue("UpdatedBy", model.UpdatedBy);
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_StatutoryBodies_Update", CommandType.StoredProcedure));
                 if (item)
@@ -124,7 +122,7 @@ namespace BAL.Services.About.Statutory_Bodies
             }
         }
 
-        public async Task<DataResponse> deleteAsync(StatutoryBodiesDTO model)
+        public async Task<DataResponse> deleteAsync(string Id)
         {
             try
             {
@@ -132,7 +130,7 @@ namespace BAL.Services.About.Statutory_Bodies
                 string message = null;
                 bool status = false;
                 _sqlCommand.Clear_CommandParameter();
-                _sqlCommand.Add_Parameter_WithValue("Id", model.Id);
+                _sqlCommand.Add_Parameter_WithValue("Id", Id);
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_StatutoryBodies_Delete", CommandType.StoredProcedure));
                 if (item)
                 {

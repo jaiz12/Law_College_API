@@ -68,12 +68,12 @@ namespace BAL.Services.About.About_Us
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AboutUs_Infrastructure_Create", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Infrastructure Added Successfully";
+                    message = "Infrastructure Saved Successfully";
                     status = true;
                 }
                 else
                 {
-                    message = "Failed to Add Infrastructure";
+                    message = "Failed to Save Infrastructure";
                     status = false;
                 }
                 return new DataResponse(message, status);

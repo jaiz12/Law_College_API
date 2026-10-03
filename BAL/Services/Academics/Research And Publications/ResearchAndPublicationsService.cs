@@ -47,12 +47,12 @@ namespace BAL.Services.Academics.Research_And_Publications
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_Academics_ResearchAndPublications_Create", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Research And Publications Added Successfully";
+                    message = "Research And Publications Saved Successfully";
                     status = true;
                 }
                 else
                 {
-                    message = "Failed to Add Research And Publications";
+                    message = "Failed to Save Research And Publications";
                     status = false;
                 }
                 return new DataResponse(message, status);

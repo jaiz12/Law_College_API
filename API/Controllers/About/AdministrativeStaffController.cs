@@ -58,6 +58,7 @@ namespace API.Controllers.About
             {
                 imagePath =
                     await _fileUpload.UploadAsync(
+                        model.Name + " " + model.Designation,
                         model.Photo,
                         "About",
                         "Administrative Staff"
@@ -128,6 +129,7 @@ namespace API.Controllers.About
             if (model.Photo != null)
             {
                 imagePath = await _fileUpload.UploadAsync(
+                    model.Name + " " + model.Designation,
                                 model.Photo,
                                 "About",
                                 "Administrative Staff"

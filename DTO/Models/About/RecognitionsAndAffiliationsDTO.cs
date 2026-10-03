@@ -13,15 +13,10 @@ namespace DTO.Models.About
 
         public string Title { get; set; } = string.Empty;
 
-        public string Description { get; set; } = string.Empty;
+        public string? Content { get; set; }
 
-        public IFormFile? Image { get; set; }
-
-        public string? CoverImage { get; set; }
-
-        public string? ExternalUrl { get; set; } = string.Empty;
-
-        public int DisplayOrder { get; set; }
+        public string? FilePath { get; set; }
+        public IFormFile? File { get; set; }
 
         public DateTime? CreatedOn { get; set; }
 

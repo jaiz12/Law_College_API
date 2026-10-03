@@ -50,6 +50,7 @@ namespace API.Controllers.About
             {
                 imagePath =
                     await _fileUpload.UploadAsync(
+                        model.PageName,
                         model.Photo,
                         "About",
                         model.PageName
@@ -58,7 +59,7 @@ namespace API.Controllers.About
 
             try
             {
-                
+
 
                 // Create a model for database
                 var page =
@@ -127,6 +128,7 @@ namespace API.Controllers.About
             if (model.Photo != null)
             {
                 imagePath = await _fileUpload.UploadAsync(
+                                model.PageName,
                                 model.Photo,
                                 "About",
                                 model.PageName
@@ -141,7 +143,7 @@ namespace API.Controllers.About
 
             try
             {
-                
+
 
                 var page =
                     new AboutUsDTO
