@@ -5,6 +5,7 @@ using BAL.Services.About.Faculty;
 using BAL.Services.About.Recognitions_And_Affiliations;
 using BAL.Services.About.Statutory_Bodies;
 using BAL.Services.Academics.Academic_Calendar;
+using BAL.Services.Academics.Academic_Policies;
 using BAL.Services.Academics.Our_Program;
 using BAL.Services.Academics.Research_And_Publications;
 using BAL.Services.Academics.Syllabus;
@@ -59,6 +60,7 @@ namespace BAL.DependencyResolver
             services.AddScoped<INotableAlumniService, NotableAlumniService>();
             services.AddScoped<INewslettersService, NewslettersService>();
             services.AddScoped<IStudentLifeService, StudentLifeService>();
+            services.AddScoped<IAcademicPoliciesService, AcademicPoliciesService>();
             return services;
         }
     }
