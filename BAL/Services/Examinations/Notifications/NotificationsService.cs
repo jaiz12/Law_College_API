@@ -1,7 +1,7 @@
 ﻿using Common.DbContext;
-using DTO.Models.Academics;
 using DTO.Models.Admissions;
 using DTO.Models.DataResponse;
+using DTO.Models.Examinations;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,16 +9,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BAL.Services.Admissions
+namespace BAL.Services.Examinations.Notifications
 {
-    public class ProspectusService: MyDbContext, IProspectusService
+    public class NotificationsService: MyDbContext, INotificationsService
     {
         public async Task<DataTable> GetAllAsync()
         {
             try
             {
                 OpenContext();
-                var result = await Task.Run(() => _sqlCommand.Select_Table("sp_Admissions_Prospectus_GetAll", CommandType.StoredProcedure));
+                var result = await Task.Run(() => _sqlCommand.Select_Table("sp_Examinations_Notifications_GetAll", CommandType.StoredProcedure));
                 return result;
             }
             catch (Exception ex)
@@ -38,7 +38,7 @@ namespace BAL.Services.Admissions
                 OpenContext();
                 _sqlCommand.Clear_CommandParameter();
                 _sqlCommand.Add_Parameter_WithValue("Id", Id);
-                var result = await Task.Run(() => _sqlCommand.Select_Table("sp_Admissions_Prospectus_GetById", CommandType.StoredProcedure));
+                var result = await Task.Run(() => _sqlCommand.Select_Table("sp_Examinations_Notifications_GetById", CommandType.StoredProcedure));
                 return result;
             }
             catch (Exception ex)
@@ -52,7 +52,7 @@ namespace BAL.Services.Admissions
         }
 
         public async Task<DataResponse> CreateAsync(
-            ProspectusDTO model)
+            NotificationsDTO model)
         {
             try
             {
@@ -63,15 +63,15 @@ namespace BAL.Services.Admissions
                 _sqlCommand.Add_Parameter_WithValue("Title", model.Title);
                 _sqlCommand.Add_Parameter_WithValue("FilePath", model.FilePath);
                 _sqlCommand.Add_Parameter_WithValue("CreatedBy", model.CreatedBy);
-                var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_Admissions_Prospectus_Create", CommandType.StoredProcedure));
+                var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_Examinations_Notifications_Create", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Prospectus Saved Successfully";
+                    message = "Notifications Saved Successfully";
                     status = true;
                 }
                 else
                 {
-                    message = "Failed to Save Prospectus";
+                    message = "Failed to Save Notifications";
                     status = false;
                 }
                 return new DataResponse(message, status);
@@ -87,7 +87,7 @@ namespace BAL.Services.Admissions
         }
 
         public async Task<DataResponse> UpdateAsync(
-            ProspectusDTO model)
+            NotificationsDTO model)
         {
             try
             {
@@ -99,15 +99,15 @@ namespace BAL.Services.Admissions
                 _sqlCommand.Add_Parameter_WithValue("Title", model.Title);
                 _sqlCommand.Add_Parameter_WithValue("FilePath", model.FilePath);
                 _sqlCommand.Add_Parameter_WithValue("UpdatedBy", model.UpdatedBy);
-                var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_Admissions_Prospectus_Update", CommandType.StoredProcedure));
+                var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_Examinations_Notifications_Update", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Prospectus Updated Successfully";
+                    message = "Notifications Updated Successfully";
                     status = true;
                 }
                 else
                 {
-                    message = "Failed to Update Prospectus";
+                    message = "Failed to Update Notifications";
                     status = false;
                 }
                 return new DataResponse(message, status);
@@ -122,7 +122,7 @@ namespace BAL.Services.Admissions
             }
         }
 
-        public async Task<DataResponse> deleteAsync(ProspectusDTO model)
+        public async Task<DataResponse> deleteAsync(NotificationsDTO model)
         {
             try
             {
@@ -131,15 +131,15 @@ namespace BAL.Services.Admissions
                 bool status = false;
                 _sqlCommand.Clear_CommandParameter();
                 _sqlCommand.Add_Parameter_WithValue("Id", model.Id);
-                var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_Admissions_Prospectus_Delete", CommandType.StoredProcedure));
+                var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_Examinations_Notifications_Delete", CommandType.StoredProcedure));
                 if (item)
                 {
-                    message = "Prospectus Deleted Successfully";
+                    message = "Notifications Deleted Successfully";
                     status = true;
                 }
                 else
                 {
-                    message = "Failed to Delete Prospectus";
+                    message = "Failed to Delete Notifications";
                     status = false;
                 }
                 return new DataResponse(message, status);

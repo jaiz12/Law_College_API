@@ -1,6 +1,5 @@
 ﻿using API.Controllers.Services;
-using BAL.Services.Examinations;
-using BAL.Services.Examinations;
+using BAL.Services.Examinations.Notifications;
 using DTO.Models.Examinations;
 using Microsoft.AspNetCore.Mvc;
 

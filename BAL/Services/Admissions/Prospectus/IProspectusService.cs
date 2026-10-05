@@ -2,7 +2,7 @@
 using DTO.Models.DataResponse;
 using System.Data;
 
-namespace BAL.Services.Admissions
+namespace BAL.Services.Admissions.Prospectus
 {
     public interface IProspectusService
     {

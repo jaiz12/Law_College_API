@@ -1,6 +1,6 @@
 ﻿using API.Controllers.Services;
 using BAL.Services.Academics.Syllabus;
-using BAL.Services.Admissions;
+using BAL.Services.Admissions.Prospectus;
 using DTO.Models.Academics;
 using DTO.Models.Admissions;
 using Microsoft.AspNetCore.Mvc;

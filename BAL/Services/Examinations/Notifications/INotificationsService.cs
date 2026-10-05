@@ -2,7 +2,7 @@
 using DTO.Models.Examinations;
 using System.Data;
 
-namespace BAL.Services.Examinations
+namespace BAL.Services.Examinations.Notifications
 {
     public interface INotificationsService
     {
