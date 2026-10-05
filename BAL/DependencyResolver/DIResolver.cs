@@ -23,6 +23,7 @@ using BAL.Services.Media_and_Gallery.Album;
 using BAL.Services.Media_and_Gallery.Media;
 using BAL.Services.News_and_Events.Announcemets;
 using BAL.Services.Student_Life.Library;
+using BAL.Services.Student_Life.Student_Life;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BAL.DependencyResolver
@@ -57,6 +58,7 @@ namespace BAL.DependencyResolver
             services.AddScoped<IAlumniEventsService, AlumniEventsService>();
             services.AddScoped<INotableAlumniService, NotableAlumniService>();
             services.AddScoped<INewslettersService, NewslettersService>();
+            services.AddScoped<IStudentLifeService, StudentLifeService>();
             return services;
         }
     }
