@@ -19,7 +19,7 @@ namespace BAL.Services.Academics.Academic_Policies
             {
                 OpenContext();
                 _sqlCommand.Clear_CommandParameter();
-                var result = await Task.Run(() => _sqlCommand.Select_Table("sp_AcademicPolicies_Get", CommandType.StoredProcedure));
+                var result = await Task.Run(() => _sqlCommand.Select_Table("sp_Academic_AcademicPolicies_Get", CommandType.StoredProcedure));
                 return result;
             }
             catch (Exception ex)
@@ -42,7 +42,7 @@ namespace BAL.Services.Academics.Academic_Policies
                 _sqlCommand.Clear_CommandParameter();
                 _sqlCommand.Add_Parameter_WithValue("Content", model.Content);
                 _sqlCommand.Add_Parameter_WithValue("CreatedBy", model.CreatedBy);
-                var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AcademicPolicies_Create", CommandType.StoredProcedure));
+                var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_Academic_AcademicPolicies_Create", CommandType.StoredProcedure));
                 if (item)
                 {
                     message = $"Academic Policies Saved Successfully";
@@ -78,7 +78,7 @@ namespace BAL.Services.Academics.Academic_Policies
                 _sqlCommand.Add_Parameter_WithValue("Id", model.Id);
                 _sqlCommand.Add_Parameter_WithValue("Content", model.Content);
                 _sqlCommand.Add_Parameter_WithValue("UpdatedBy", model.UpdatedBy);
-                var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_AcademicPolicies_Update", CommandType.StoredProcedure));
+                var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_Academic_AcademicPolicies_Update", CommandType.StoredProcedure));
                 if (item)
                 {
                     message = $"Academic Policies Updated Successfully";
