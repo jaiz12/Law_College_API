@@ -10,7 +10,9 @@ using BAL.Services.Academics.Our_Program;
 using BAL.Services.Academics.Research_And_Publications;
 using BAL.Services.Academics.Syllabus;
 using BAL.Services.Admissions.Contact_Admission_Office;
+using BAL.Services.Admissions.Eligibility_Admission_Process_And_Intake;
 using BAL.Services.Admissions.Prospectus;
+using BAL.Services.Admissions.Reservation_Policy;
 using BAL.Services.Alumni.Alumni_Events;
 using BAL.Services.Alumni.Governing_Body;
 using BAL.Services.Alumni.Newsletters;
@@ -18,6 +20,7 @@ using BAL.Services.Alumni.Notable_Alumni;
 using BAL.Services.Banner;
 using BAL.Services.Committee_and_Cell;
 using BAL.Services.Committee_and_Cell.Legal_Aid_Cell;
+using BAL.Services.Compliance_Or_Disclosures;
 using BAL.Services.Examinations.Notifications;
 using BAL.Services.Examinations.Results;
 using BAL.Services.Header_and_Footer.Logo_And_Title;
@@ -65,6 +68,9 @@ namespace BAL.DependencyResolver
             services.AddScoped<IAcademicPoliciesService, AcademicPoliciesService>();
             services.AddScoped<IContactAdmissionOfficeService, ContactAdmissionOfficeService>();
             services.AddScoped<IResultsService, ResultsService>();
+            services.AddScoped<IEligibilityAdmissionProcessAndIntakeService, EligibilityAdmissionProcessAndIntakeService>();
+            services.AddScoped<IReservationPolicyService, ReservationPolicyService>();
+            services.AddScoped<IComplianceOrDisclosuresService, ComplianceOrDisclosuresService>();
             return services;
         }
     }

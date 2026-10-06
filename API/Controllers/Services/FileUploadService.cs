@@ -100,7 +100,7 @@ namespace API.Controllers.Services
 
             string cleanFileName = Regex.Replace(lowercaseFileName, @"[^a-z0-9_]", "");
             var fileName =
-                $"{cleanFileName}{finalExtension}";
+                $"{cleanFileName}_{DateTime.Now:yyyyMMdd_HHmmss}{finalExtension}";
 
             var fullPath =
                 Path.Combine(
