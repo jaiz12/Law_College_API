@@ -17,6 +17,7 @@ using BAL.Services.Alumni.Alumni_Events;
 using BAL.Services.Alumni.Governing_Body;
 using BAL.Services.Alumni.Newsletters;
 using BAL.Services.Alumni.Notable_Alumni;
+using BAL.Services.Alumni.Registration;
 using BAL.Services.Banner;
 using BAL.Services.Committee_and_Cell;
 using BAL.Services.Committee_and_Cell.Legal_Aid_Cell;
@@ -71,6 +72,7 @@ namespace BAL.DependencyResolver
             services.AddScoped<IEligibilityAdmissionProcessAndIntakeService, EligibilityAdmissionProcessAndIntakeService>();
             services.AddScoped<IReservationPolicyService, ReservationPolicyService>();
             services.AddScoped<IComplianceOrDisclosuresService, ComplianceOrDisclosuresService>();
+            services.AddScoped<IRegistrationService, RegistrationService>();
             return services;
         }
     }
