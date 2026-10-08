@@ -24,6 +24,7 @@ using BAL.Services.Committee_and_Cell.Legal_Aid_Cell;
 using BAL.Services.Compliance_Or_Disclosures;
 using BAL.Services.Examinations.Notifications;
 using BAL.Services.Examinations.Results;
+using BAL.Services.Examinations.Student_Achievers;
 using BAL.Services.Header_and_Footer.Logo_And_Title;
 using BAL.Services.Home;
 using BAL.Services.Media_and_Gallery.Album;
@@ -73,6 +74,7 @@ namespace BAL.DependencyResolver
             services.AddScoped<IReservationPolicyService, ReservationPolicyService>();
             services.AddScoped<IComplianceOrDisclosuresService, ComplianceOrDisclosuresService>();
             services.AddScoped<IRegistrationService, RegistrationService>();
+            services.AddScoped<IStudentAchieversService, StudentAchieversService>();
             return services;
         }
     }
