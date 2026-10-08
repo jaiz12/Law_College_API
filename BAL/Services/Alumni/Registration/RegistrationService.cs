@@ -41,6 +41,7 @@ namespace BAL.Services.Alumni.Registration
                 string message = null;
                 bool status = false;
                 _sqlCommand.Clear_CommandParameter();
+                _sqlCommand.Add_Parameter_WithValue("RegistrationId", model.RegistrationId);
                 _sqlCommand.Add_Parameter_WithValue("FullName", model.FullName);
                 _sqlCommand.Add_Parameter_WithValue("Email", model.Email);
                 _sqlCommand.Add_Parameter_WithValue("MobileNumber", model.MobileNumber);
@@ -74,5 +75,7 @@ namespace BAL.Services.Alumni.Registration
                 CloseContext();
             }
         }
+
+
     }
 }

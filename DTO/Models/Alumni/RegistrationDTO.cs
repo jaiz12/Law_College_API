@@ -10,6 +10,7 @@ namespace DTO.Models.Alumni
     public class RegistrationDTO
     {
         public int Id { get; set; }
+        public string RegistrationId { get; set; }
 
         public string FullName { get; set; } = string.Empty;
 

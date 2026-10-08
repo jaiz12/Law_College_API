@@ -55,6 +55,7 @@ namespace API.Controllers.Alumni
                 // Create a model for database
                 var page = new RegistrationDTO
                 {
+                    RegistrationId= model.RegistrationId,
                     FullName = model.FullName,
                     Email = model.Email,
                     MobileNumber = model.MobileNumber,
@@ -87,5 +88,6 @@ namespace API.Controllers.Alumni
                 });
             }
         }
+
     }
 }
