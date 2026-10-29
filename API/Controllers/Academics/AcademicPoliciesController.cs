@@ -1,4 +1,5 @@
-﻿using BAL.Services.Academics.Academic_Policies;
+﻿using API.Controllers.Services;
+using BAL.Services.Academics.Academic_Policies;
 using BAL.Services.Student_Life.Student_Life;
 using Common.DataContext;
 using DTO.Models.Academics;
@@ -11,11 +12,13 @@ namespace API.Controllers.Academics
     [Route("api/[controller]")]
     public class AcademicPoliciesController : Controller
     {
+        private readonly IFileUploadService _fileUpload;
         private readonly ApplicationDbContext _context;
         private readonly IAcademicPoliciesService _academicPoliciesService;
 
-        public AcademicPoliciesController(IAcademicPoliciesService academicPoliciesService, ApplicationDbContext context)
+        public AcademicPoliciesController(IFileUploadService fileUpload, IAcademicPoliciesService academicPoliciesService, ApplicationDbContext context)
         {
+            _fileUpload = fileUpload;
             _context = context;
             _academicPoliciesService = academicPoliciesService;
         }
@@ -39,7 +42,19 @@ namespace API.Controllers.Academics
         public async Task<IActionResult> Create(
             [FromForm] AcademicPoliciesDTO model)
         {
+            string? filePath = null;
 
+            // Upload image
+            if (model.File != null)
+            {
+                filePath =
+                    await _fileUpload.UploadAsync(
+                        "Academic Policies",
+                        model.File,
+                        "Academic",
+                        "Academic Policies"
+                    );
+            }
             try
             {
 
@@ -49,13 +64,18 @@ namespace API.Controllers.Academics
                     new AcademicPoliciesDTO
                     {
                         Content = model.Content,
-                        CreatedBy = model.CreatedBy
+                        FilePath = filePath,
+                        CreatedBy = model.CreatedBy,
+
                     };
 
 
                 // Call business service
                 var result = await _academicPoliciesService.CreateAsync(page);
-
+                if (!result.IsSucceeded)
+                {
+                    _fileUpload.Delete(filePath);
+                }
                 return Ok(result);
             }
             catch (Exception ex)
@@ -70,6 +90,42 @@ namespace API.Controllers.Academics
         [HttpPut]
         public async Task<IActionResult> Update([FromForm] AcademicPoliciesDTO model)
         {
+            var existingPage = await _academicPoliciesService.GetByIdAsync(model.Id);
+
+
+            if (existingPage == null)
+            {
+                return NotFound(new
+                {
+                    message =
+                        "Academic Policies not found."
+                });
+            }
+
+            var row = existingPage.Rows[0];
+
+
+            string? oldfilePath =
+                row["FilePath"] == DBNull.Value
+                    ? null
+                    : row["FilePath"].ToString();
+
+            string? filePath = oldfilePath;
+
+            if (model.File != null)
+            {
+                filePath = await _fileUpload.UploadAsync(
+                        "Academic Policies",
+                        model.File,
+                        "Academic",
+                        "Academic Policies"
+                    );
+
+                if (!string.IsNullOrWhiteSpace(oldfilePath))
+                {
+                    _fileUpload.Delete(oldfilePath);
+                }
+            }
 
             try
             {
@@ -80,11 +136,18 @@ namespace API.Controllers.Academics
                     {
                         Id = model.Id,
                         Content = model.Content,
+                        FilePath = filePath,
                         UpdatedBy = model.UpdatedBy
                     };
 
 
                 var result = await _academicPoliciesService.UpdateAsync(page);
+
+                if (!result.IsSucceeded)
+                {
+                    _fileUpload.Delete(filePath);
+                }
+
                 return Ok(result);
 
             }

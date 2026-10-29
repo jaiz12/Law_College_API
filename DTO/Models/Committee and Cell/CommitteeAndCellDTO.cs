@@ -14,6 +14,9 @@ namespace DTO.Models.Committee_and_Cell
 
         public string Content { get; set; } = string.Empty;
 
+        public string? FilePath { get; set; }
+        public IFormFile? File { get; set; }
+
         public DateTime CreatedOn { get; set; }
 
         public string? CreatedBy { get; set; }

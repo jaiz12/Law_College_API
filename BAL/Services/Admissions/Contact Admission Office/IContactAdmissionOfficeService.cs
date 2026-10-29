@@ -13,8 +13,8 @@ namespace BAL.Services.Admissions.Contact_Admission_Office
     public interface IContactAdmissionOfficeService
     {
         Task<DataTable> GetAsync();
+        Task<DataTable> GetByIdAsync(int Id);
         Task<DataResponse> CreateAsync(ContactAdmissionOfficesDTO model);
-
 
         Task<DataResponse> UpdateAsync(ContactAdmissionOfficesDTO model);
     }

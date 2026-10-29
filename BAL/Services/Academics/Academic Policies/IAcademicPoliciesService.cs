@@ -13,9 +13,8 @@ namespace BAL.Services.Academics.Academic_Policies
     public interface IAcademicPoliciesService
     {
         Task<DataTable> GetAsync();
+        Task<DataTable> GetByIdAsync(int Id);
         Task<DataResponse> CreateAsync(AcademicPoliciesDTO model);
-
-
         Task<DataResponse> UpdateAsync(AcademicPoliciesDTO model);
     }
 }

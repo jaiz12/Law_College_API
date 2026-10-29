@@ -31,6 +31,26 @@ namespace BAL.Services.Examinations.Results
                 CloseContext();
             }
         }
+
+        public async Task<DataTable> GetByIdAsync(int Id)
+        {
+            try
+            {
+                OpenContext();
+                _sqlCommand.Clear_CommandParameter();
+                _sqlCommand.Add_Parameter_WithValue("Id", Id);
+                var result = await Task.Run(() => _sqlCommand.Select_Table("sp_Examination_Results_GetById", CommandType.StoredProcedure));
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                CloseContext();
+            }
+        }
         public async Task<DataResponse> CreateAsync(
             ResultsDTO model)
         {
@@ -41,6 +61,7 @@ namespace BAL.Services.Examinations.Results
                 bool status = false;
                 _sqlCommand.Clear_CommandParameter();
                 _sqlCommand.Add_Parameter_WithValue("Content", model.Content);
+                _sqlCommand.Add_Parameter_WithValue("FilePath", model.FilePath);
                 _sqlCommand.Add_Parameter_WithValue("CreatedBy", model.CreatedBy);
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_Examination_Results_Create", CommandType.StoredProcedure));
                 if (item)
@@ -77,6 +98,7 @@ namespace BAL.Services.Examinations.Results
                 _sqlCommand.Clear_CommandParameter();
                 _sqlCommand.Add_Parameter_WithValue("Id", model.Id);
                 _sqlCommand.Add_Parameter_WithValue("Content", model.Content);
+                _sqlCommand.Add_Parameter_WithValue("FilePath", model.FilePath);
                 _sqlCommand.Add_Parameter_WithValue("UpdatedBy", model.UpdatedBy);
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_Examination_Results_Update", CommandType.StoredProcedure));
                 if (item)

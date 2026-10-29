@@ -13,6 +13,8 @@ namespace BAL.Services.Examinations.Results
     public interface IResultsService
     {
         Task<DataTable> GetAsync();
+
+        Task<DataTable> GetByIdAsync(int Id);
         Task<DataResponse> CreateAsync(ResultsDTO model);
 
 

@@ -44,6 +44,7 @@ namespace BAL.Services.Student_Life.Student_Life
                 _sqlCommand.Clear_CommandParameter();
                 _sqlCommand.Add_Parameter_WithValue("PageName", model.PageName);
                 _sqlCommand.Add_Parameter_WithValue("Content", model.Content);
+                _sqlCommand.Add_Parameter_WithValue("FilePath", model.FilePath);
                 _sqlCommand.Add_Parameter_WithValue("CreatedBy", model.CreatedBy);
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_StudentLife_Create", CommandType.StoredProcedure));
                 if (item)
@@ -81,6 +82,7 @@ namespace BAL.Services.Student_Life.Student_Life
                 _sqlCommand.Add_Parameter_WithValue("Id", model.Id);
                 _sqlCommand.Add_Parameter_WithValue("PageName", model.PageName);
                 _sqlCommand.Add_Parameter_WithValue("Content", model.Content);
+                _sqlCommand.Add_Parameter_WithValue("FilePath", model.FilePath);
                 _sqlCommand.Add_Parameter_WithValue("UpdatedBy", model.UpdatedBy);
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_StudentLife_Update", CommandType.StoredProcedure));
                 if (item)

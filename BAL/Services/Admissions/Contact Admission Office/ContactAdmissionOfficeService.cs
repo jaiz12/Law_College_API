@@ -31,6 +31,27 @@ namespace BAL.Services.Admissions.Contact_Admission_Office
                 CloseContext();
             }
         }
+
+
+        public async Task<DataTable> GetByIdAsync(int Id)
+        {
+            try
+            {
+                OpenContext();
+                _sqlCommand.Clear_CommandParameter();
+                _sqlCommand.Add_Parameter_WithValue("Id", Id);
+                var result = await Task.Run(() => _sqlCommand.Select_Table("sp_Admissions_ContactAdmissionOffice_GetById", CommandType.StoredProcedure));
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                CloseContext();
+            }
+        }
         public async Task<DataResponse> CreateAsync(
             ContactAdmissionOfficesDTO model)
         {
@@ -41,6 +62,7 @@ namespace BAL.Services.Admissions.Contact_Admission_Office
                 bool status = false;
                 _sqlCommand.Clear_CommandParameter();
                 _sqlCommand.Add_Parameter_WithValue("Content", model.Content);
+                _sqlCommand.Add_Parameter_WithValue("FilePath", model.FilePath);
                 _sqlCommand.Add_Parameter_WithValue("CreatedBy", model.CreatedBy);
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_Admissions_ContactAdmissionOffice_Create", CommandType.StoredProcedure));
                 if (item)
@@ -77,6 +99,7 @@ namespace BAL.Services.Admissions.Contact_Admission_Office
                 _sqlCommand.Clear_CommandParameter();
                 _sqlCommand.Add_Parameter_WithValue("Id", model.Id);
                 _sqlCommand.Add_Parameter_WithValue("Content", model.Content);
+                _sqlCommand.Add_Parameter_WithValue("FilePath", model.FilePath);
                 _sqlCommand.Add_Parameter_WithValue("UpdatedBy", model.UpdatedBy);
                 var item = await Task.Run(() => _sqlCommand.Execute_Query("sp_Admissions_ContactAdmissionOffice_Update", CommandType.StoredProcedure));
                 if (item)
